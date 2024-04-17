@@ -1,0 +1,13 @@
+debug/
+docs/
+build/
+
+.git/
+.github/
+.vscode/
+
+*.tar.gz
+*.zip
+*.rar
+*.tar
+*.csv

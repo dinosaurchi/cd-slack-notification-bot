@@ -62,7 +62,7 @@ func NewClientDefault() *Client {
 }
 
 func (c *Client) GetPullRequestInfo(
-	commitNumber uint64,
+	pullRequestNumber uint64,
 ) (*PullRequest, error) {
 	targetURL, err := url.JoinPath(
 		APIURL,
@@ -70,7 +70,7 @@ func (c *Client) GetPullRequestInfo(
 		c.repoOwner,
 		c.repoName,
 		"pulls",
-		strconv.FormatUint(commitNumber, 10),
+		strconv.FormatUint(pullRequestNumber, 10),
 	)
 	if err != nil {
 		return nil, errors.WithStack(err)
@@ -92,7 +92,7 @@ func (c *Client) GetPullRequestInfo(
 }
 
 func (c *Client) GetPullRequestCommits(
-	commitNumber uint64,
+	pullRequestNumber uint64,
 ) ([]*Commit, error) {
 	// Example: https://api.github.com/repos/owner/myrepo/pulls/123/commits
 	targetURL, err := url.JoinPath(
@@ -101,7 +101,7 @@ func (c *Client) GetPullRequestCommits(
 		c.repoOwner,
 		c.repoName,
 		"pulls",
-		strconv.FormatUint(commitNumber, 10),
+		strconv.FormatUint(pullRequestNumber, 10),
 		"commits",
 	)
 	if err != nil {

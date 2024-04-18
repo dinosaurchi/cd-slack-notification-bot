@@ -37,8 +37,8 @@ func main() {
 		panic(err)
 	}
 
-	const waitTime = time.Second * 10
-	const waitTimeForError = time.Second * 120
+	const waitTime = time.Minute * 3
+	const waitTimeForError = time.Minute * 6
 
 	for {
 		curNow := time.Now()

@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/joho/godotenv"
+	"github.com/pkg/errors"
 	"github.com/sirupsen/logrus"
 )
 
@@ -39,31 +40,43 @@ func main() {
 
 	for {
 		curNow := time.Now()
-
-		// Run PR tracker
-		prTrackerState, err = prtracker.RunPRTracker(prTrackerState, curNow)
+		err := runTrackers(prTrackerState, cdTrackerState, stateDirPath, curNow)
 		if err != nil {
-			logrus.Printf("Error: %v\n", err)
+			logrus.Errorf("Error: %v\n", err)
 			time.Sleep(waitTimeForError)
 		} else {
-			err = utils.DumpToFile(prtracker.GetPRTrackerStatePath(stateDirPath), prTrackerState)
-			if err != nil {
-				logrus.Printf("Dump file error: %v\n", err)
-			}
-			time.Sleep(waitTime)
-		}
-
-		// Run CD tracker
-		cdTrackerState, err = cdtracker.RunCDTracker(cdTrackerState, curNow)
-		if err != nil {
-			logrus.Printf("Error: %v\n", err)
-			time.Sleep(waitTimeForError)
-		} else {
-			err = utils.DumpToFile(cdtracker.GetCDTrackerStatePath(stateDirPath), cdTrackerState)
-			if err != nil {
-				logrus.Printf("Dump file error: %v\n", err)
-			}
 			time.Sleep(waitTime)
 		}
 	}
+}
+
+func runTrackers(
+	prTrackerState *prtracker.State,
+	cdTrackerState *cdtracker.State,
+	stateDirPath string,
+	curNow time.Time,
+) error {
+	// Run PR tracker
+	prTrackerState, err := prtracker.RunPRTracker(prTrackerState, curNow)
+	if err != nil {
+		return errors.Errorf("error running PR Tracker: %v", err)
+	}
+
+	err = utils.DumpToFile(prtracker.GetPRTrackerStatePath(stateDirPath), prTrackerState)
+	if err != nil {
+		return errors.Errorf("dump PR Tracker file error: %v", err)
+	}
+
+	// Run CD tracker
+	cdTrackerState, err = cdtracker.RunCDTracker(cdTrackerState, curNow)
+	if err != nil {
+		return errors.Errorf("error running CD Tracker: %v", err)
+	}
+
+	err = utils.DumpToFile(cdtracker.GetCDTrackerStatePath(stateDirPath), cdTrackerState)
+	if err != nil {
+		return errors.Errorf("dump CD Tracker file error: %v", err)
+	}
+
+	return nil
 }

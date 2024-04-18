@@ -52,6 +52,10 @@ func RunCDTracker(
 		allTimestamps = append(allTimestamps, utils.ConvertTimestampStringToTime(message.ThreadTimestamp))
 
 		if runID != "" {
+			if _, ok := state.RunIDToCDs[runID]; ok {
+				continue
+			}
+
 			hasRunIDCount++
 			state.RunIDToCDs[runID] = &CDInfo{
 				ThreadTimestamp: message.ThreadTimestamp,
@@ -60,7 +64,7 @@ func RunCDTracker(
 		}
 	}
 
-	logrus.Infof("Found %v messages with runID", hasRunIDCount)
+	logrus.Infof("Found %v new messages with runID", hasRunIDCount)
 	logrus.Infof("-------------")
 
 	maxTimestamp, err := utils.MaxSlice[time.Time](

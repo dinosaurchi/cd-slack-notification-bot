@@ -6,27 +6,34 @@ import (
 	"testing"
 	"time"
 
+	slackgo "github.com/slack-go/slack"
 	"github.com/stretchr/testify/require"
 )
 
 func Test_RetrieveChannelHistory(t *testing.T) {
 	testutils.SkipCI(t)
 
-	client := slack.NewClientDefault()
-	messages, err := client.RetrieveChannelHistory(
-		"C01Q7H30F3L",
-		time.Now().Add(-time.Hour*48),
-		time.Now(),
-	)
-	require.NoError(t, err)
-	require.NotNil(t, messages)
-	require.NotEmpty(t, messages)
+	var messages []slackgo.Message
 
-	for _, message := range messages {
-		runID, err := slack.ParseRunIDFromMessage(message)
+	t.Run("Retrive messages from a channel", func(t *testing.T) {
+		client := slack.NewClientDefault()
+		var err error
+		messages, err = client.RetrieveChannelHistory(
+			"C01Q7H30F3L",
+			time.Now().Add(-time.Hour*48),
+			time.Now(),
+		)
 		require.NoError(t, err)
+		require.NotNil(t, messages)
+		require.NotEmpty(t, messages)
+	})
 
-		t.Log(`
+	t.Run("Check getting RunID from messages", func(t *testing.T) {
+		for _, message := range messages {
+			runID, err := slack.ParseRunIDFromMessage(message)
+			require.NoError(t, err)
+
+			t.Log(`
 		Type: ` + message.Type + `
 		SubType: ` + message.SubType + `
 		Username: ` + message.Username + `
@@ -35,5 +42,6 @@ func Test_RetrieveChannelHistory(t *testing.T) {
 		RunID: ` + runID + `
 		----------------------
 		`)
-	}
+		}
+	})
 }

@@ -9,21 +9,29 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func Test_Client(t *testing.T) {
-	t.Run("GetPullRequestCommits", func(t *testing.T) {
-		testutils.SkipCI(t)
+func Test_GetPullRequestCommits(t *testing.T) {
+	testutils.SkipCI(t)
 
-		// Test the GetPullRequestCommits method
-		client := github.NewClientDefault()
-		commits, err := client.GetPullRequestCommits(588)
-		require.NoError(t, err)
-		require.NotEmpty(t, commits)
+	client := github.NewClientDefault()
+	commits, err := client.GetPullRequestCommits(588)
+	require.NoError(t, err)
+	require.NotEmpty(t, commits)
 
-		lastCommit := commits[len(commits)-1]
+	lastCommit := commits[len(commits)-1]
 
-		t.Log("Author commit info:", utils.ToJSONStringPanic(lastCommit.GetAuthorCommitInfo()))
-		t.Log("Committer commit info:", utils.ToJSONStringPanic(lastCommit.GetCommitterCommitInfo()))
-		t.Log("Message:", lastCommit.GetMessage())
-		t.Log("Commit SHA:", lastCommit.GetCommitSHA())
-	})
+	t.Log("Author commit info:", utils.ToJSONStringPanic(lastCommit.GetAuthorCommitInfo()))
+	t.Log("Committer commit info:", utils.ToJSONStringPanic(lastCommit.GetCommitterCommitInfo()))
+	t.Log("Message:", lastCommit.GetMessage())
+	t.Log("Commit SHA:", lastCommit.GetCommitSHA())
+}
+
+func Test_GetPullRequestInfo(t *testing.T) {
+	testutils.SkipCI(t)
+
+	client := github.NewClientDefault()
+	pr, err := client.GetPullRequestInfo(588)
+	require.NoError(t, err)
+	require.NotNil(t, pr)
+
+	t.Log("PR:", utils.ToJSONStringPanic(pr))
 }

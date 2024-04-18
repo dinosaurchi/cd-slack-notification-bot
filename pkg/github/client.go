@@ -33,6 +33,36 @@ func NewClientDefault() *Client {
 	)
 }
 
+func (c *Client) GetPullRequestInfo(
+	commitNumber uint64,
+) (*PullRequest, error) {
+	targetURL, err := url.JoinPath(
+		APIURL,
+		"repos",
+		c.repoOwner,
+		c.repoName,
+		"pulls",
+		strconv.FormatUint(commitNumber, 10),
+	)
+	if err != nil {
+		return nil, errors.WithStack(err)
+	}
+
+	body, err := c.getRequest(targetURL, nil)
+	if err != nil {
+		return nil, errors.WithStack(err)
+	}
+
+	// Convert body to PullRequest struct
+	var prInfo *PullRequest
+	err = json.Unmarshal(body, &prInfo)
+	if err != nil {
+		return nil, errors.WithStack(err)
+	}
+
+	return prInfo, nil
+}
+
 func (c *Client) GetPullRequestCommits(
 	commitNumber uint64,
 ) ([]*Commit, error) {

@@ -1,7 +1,7 @@
 package slack
 
 import (
-	"cd-slack-notification-bot/go/pkg/utils"
+	"cd-slack-notification-bot/go/pkg/config"
 	"strconv"
 	"time"
 
@@ -23,7 +23,7 @@ func NewClient(token string) *Client {
 
 func NewClientDefault() *Client {
 	return NewClient(
-		utils.GetEnvVarValue("SLACK_TOKEN", false),
+		config.GetConfigDefault().Slack.Token,
 	)
 }
 
@@ -50,7 +50,7 @@ func (c *Client) RetrieveChannelHistory(
 			ChannelID:          channelID,
 			Inclusive:          true,
 			IncludeAllMetadata: true,
-			Limit:              retrieveMessageBatchSize,
+			Limit:              config.GetConfigDefault().Slack.RetrieveMessageBatchSize,
 			Oldest:             strconv.FormatInt(from.Unix(), 10),
 			Latest:             strconv.FormatInt(to.Unix(), 10),
 			Cursor:             cursor,
@@ -69,7 +69,7 @@ func (c *Client) RetrieveChannelHistory(
 			cursor = res.ResponseMetaData.NextCursor
 		}
 
-		time.Sleep(retrieveMessageWaitDuration)
+		time.Sleep(config.GetConfigDefault().Slack.RetrieveMessageWaitDuration)
 	}
 
 	return allMessages, nil

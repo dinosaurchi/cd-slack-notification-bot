@@ -1,7 +1,7 @@
 package github
 
 import (
-	"cd-slack-notification-bot/go/pkg/utils"
+	"cd-slack-notification-bot/go/pkg/config"
 	"encoding/json"
 	"io"
 	"net/http"
@@ -55,9 +55,9 @@ func (c *Client) getRequest(
 
 func NewClientDefault() *Client {
 	return NewClient(
-		utils.GetEnvVarValue("GITHUB_REPO_OWNER", false),
-		utils.GetEnvVarValue("GITHUB_REPO_NAME", false),
-		utils.GetEnvVarValue("GITHUB_TOKEN", false),
+		config.GetConfigDefault().Github.RepoOwner,
+		config.GetConfigDefault().Github.RepoName,
+		config.GetConfigDefault().Github.Token,
 	)
 }
 

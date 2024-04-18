@@ -120,15 +120,7 @@ func fetchNewPRs(
 			return nil, errors.WithStack(err)
 		}
 
-		for _, status := range cdInfo.Statuses {
-			curPR.Statuses = append(
-				curPR.Statuses,
-				statusInfo{
-					State:        status.State,
-					CodeBuildURL: status.TargetURL,
-				},
-			)
-		}
+		curPR.Statuses = getCDInfoStatuses(cdInfo)
 
 		// Update PR info
 		state.PRs[githubPRInfo.ThreadTimestamp] = curPR
@@ -148,6 +140,22 @@ func fetchNewPRs(
 	state.LastFetchedTimestamp = maxThreadTimestamp
 
 	return state, nil
+}
+
+func getCDInfoStatuses(
+	cdInfo *github.CDInfo,
+) []statusInfo {
+	res := []statusInfo{}
+	for _, status := range cdInfo.Statuses {
+		res = append(
+			res,
+			statusInfo{
+				State:        status.State,
+				CodeBuildURL: status.TargetURL,
+			},
+		)
+	}
+	return res
 }
 
 func updateFetchedNotResolvedPRs(

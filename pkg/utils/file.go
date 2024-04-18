@@ -23,3 +23,19 @@ func DumpToFile(filepath string, data interface{}) error {
 
 	return nil
 }
+
+func LoadFromFile(filepath string, data interface{}) error {
+	file, err := os.Open(filepath)
+	if err != nil {
+		return errors.WithStack(err)
+	}
+	defer file.Close()
+
+	decoder := json.NewDecoder(file)
+	err = decoder.Decode(data)
+	if err != nil {
+		return errors.WithStack(err)
+	}
+
+	return nil
+}

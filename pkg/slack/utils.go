@@ -9,7 +9,7 @@ import (
 	"github.com/slack-go/slack"
 )
 
-func ParseRunIDFromMessage(
+func ParseRunIDFromCodeBuildMessage(
 	message slack.Message,
 ) (string, error) {
 	blockString, err := utils.ToJSONString(message.Attachments[0].Blocks.BlockSet)
@@ -31,7 +31,7 @@ func ParseRunIDFromMessage(
 		}
 
 		if blockType == "section" {
-			runID, err := getRunIDFromSectionBlock(block)
+			runID, err := getRunIDFromCodeBuildSectionBlock(block)
 			if err != nil {
 				return "", errors.WithStack(err)
 			}
@@ -68,7 +68,7 @@ func getBlockType(
 	return res.Type, nil
 }
 
-func getRunIDFromSectionBlock(
+func getRunIDFromCodeBuildSectionBlock(
 	block any,
 ) (string, error) {
 	type blockSection struct {

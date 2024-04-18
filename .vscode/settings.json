@@ -3,6 +3,7 @@
     "editor.tabSize": 4,
     "editor.formatOnSave": true,
     "editor.insertSpaces": true,
+    "go.testEnvFile": "${workspaceFolder}/.env",
     "go.lintTool": "golangci-lint",
     "go.lintFlags": [
         "--fast"
@@ -10,6 +11,7 @@
     "go.buildFlags": [
         "-tags=tools"
     ],
+    "go.formatTool": "default",
     "[go]": {
         "editor.tabSize": 4,
         "editor.insertSpaces": false,

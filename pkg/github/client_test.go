@@ -40,20 +40,20 @@ func Test_GetCommitCDInfo(t *testing.T) {
 	testutils.SkipCI(t)
 
 	client := github.NewClientDefault()
-	pr, err := client.GetCommitCDInfo("0d0b012142a9a3b8053d64646b68ec75ac93c496")
+	cdInfo, err := client.GetCommitCDInfo("0d0b012142a9a3b8053d64646b68ec75ac93c496")
 	require.NoError(t, err)
-	require.NotNil(t, pr)
+	require.NotNil(t, cdInfo)
 
-	t.Log("CD info:", utils.ToJSONStringPanic(pr))
+	t.Log("CD info:", utils.ToJSONStringPanic(cdInfo))
 }
 
 func Test_GetPullRequestCDInfo(t *testing.T) {
 	testutils.SkipCI(t)
 
 	client := github.NewClientDefault()
-	pr, err := client.GetPullRequestCDInfo(588)
+	cdInfo, err := client.GetPullRequestCDInfo(588)
 	require.NoError(t, err)
-	require.NotNil(t, pr)
+	require.NotNil(t, cdInfo)
 
-	t.Log("CD info:", utils.ToJSONStringPanic(pr))
+	t.Log("CD info:", utils.ToJSONStringPanic(cdInfo))
 }

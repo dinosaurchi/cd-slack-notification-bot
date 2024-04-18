@@ -12,7 +12,24 @@ import (
 func ParseRunIDFromCodeBuildMessage(
 	message slack.Message,
 ) (string, error) {
-	blockString, err := utils.ToJSONString(message.Attachments[0].Blocks.BlockSet)
+	for _, attachment := range message.Attachments {
+		runID, err := parseAttachment(attachment)
+		if err != nil {
+			return "", errors.WithStack(err)
+		}
+		if runID != "" {
+			return runID, nil
+		}
+	}
+
+	// No run ID found
+	return "", nil
+}
+
+func parseAttachment(
+	attachment slack.Attachment,
+) (string, error) {
+	blockString, err := utils.ToJSONString(attachment.Blocks.BlockSet)
 	if err != nil {
 		return "", errors.WithStack(err)
 	}

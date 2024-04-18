@@ -28,7 +28,7 @@ func Test_RetrieveChannelHistory(t *testing.T) {
 		require.NotEmpty(t, messages)
 	})
 
-	t.Run("Check getting RunID from messages", func(t *testing.T) {
+	t.Run("Check ParseRunIDFromCodeBuildMessage", func(t *testing.T) {
 		for _, message := range messages {
 			runID, err := slack.ParseRunIDFromCodeBuildMessage(message)
 			require.NoError(t, err)

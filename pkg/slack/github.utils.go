@@ -9,7 +9,7 @@ import (
 )
 
 type GithubPRInfo struct {
-	PRNumber        int64
+	PRNumber        uint64
 	RepoName        string
 	RepoOwner       string
 	ThreadTimestamp string
@@ -40,7 +40,7 @@ func ParseGithubPRInfoFromPROpenedMessage(
 }
 
 type GithubPRSubInfo struct {
-	PRNumber  int64
+	PRNumber  uint64
 	RepoName  string
 	RepoOwner string
 }
@@ -53,7 +53,7 @@ func ParseGithubPRSubInfoFromTitle(
 	match := re.FindStringSubmatch(title)
 	const minMatchLength = 4
 	if len(match) >= minMatchLength {
-		prNumber, err := strconv.ParseInt(match[3], 10, 64)
+		prNumber, err := strconv.ParseUint(match[3], 10, 64)
 		if err != nil {
 			return nil, errors.WithStack(err)
 		}

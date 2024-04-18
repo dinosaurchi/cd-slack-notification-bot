@@ -8,6 +8,7 @@ import (
 type SlackConfig struct {
 	Token                          string
 	CodeBuildNotificationChannelID string
+	GithubPRNotificationChannelID  string
 	RetrieveMessageBatchSize       int
 	RetrieveMessageWaitDuration    time.Duration
 }
@@ -18,6 +19,7 @@ func GetSlackConfig() *SlackConfig {
 	return &SlackConfig{
 		Token:                          utils.GetEnvVarValue("SLACK_TOKEN", false),
 		CodeBuildNotificationChannelID: utils.GetEnvVarValue("SLACK_CODEBUILD_NOTIFICATION_CHANNEL_ID", false),
+		GithubPRNotificationChannelID:  utils.GetEnvVarValue("SLACK_GITHUB_PR_NOTIFICATION_CHANNEL_ID", false),
 		RetrieveMessageBatchSize:       retrieveMessageBatchSize,
 		RetrieveMessageWaitDuration:    retrieveMessageWaitDuration,
 	}

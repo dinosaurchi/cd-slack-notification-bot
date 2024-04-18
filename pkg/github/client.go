@@ -25,6 +25,34 @@ func NewClient(repoOwner, repoName, githubToken string) *Client {
 	}
 }
 
+// Perform a GET request to the target URL
+func (c *Client) getRequest(
+	targetURL string,
+	payload io.Reader,
+) ([]byte, error) {
+	req, err := http.NewRequest("GET", targetURL, payload)
+	if err != nil {
+		return nil, errors.WithStack(err)
+	}
+
+	req.Header.Set("Accept", "application/vnd.github+json")
+	req.Header.Set("Authorization", "Bearer "+c.githubToken)
+	req.Header.Set("X-GitHub-Api-Version", "2022-11-28")
+
+	resp, err := http.DefaultClient.Do(req)
+	if err != nil {
+		return nil, errors.WithStack(err)
+	}
+	defer resp.Body.Close()
+
+	body, err := io.ReadAll(resp.Body)
+	if err != nil {
+		return nil, errors.WithStack(err)
+	}
+
+	return body, nil
+}
+
 func NewClientDefault() *Client {
 	return NewClient(
 		utils.GetEnvVarValue("GITHUB_REPO_OWNER", false),
@@ -93,32 +121,4 @@ func (c *Client) GetPullRequestCommits(
 	}
 
 	return commits, nil
-}
-
-// Perform a GET request to the target URL
-func (c *Client) getRequest(
-	targetURL string,
-	payload io.Reader,
-) ([]byte, error) {
-	req, err := http.NewRequest("GET", targetURL, payload)
-	if err != nil {
-		return nil, errors.WithStack(err)
-	}
-
-	req.Header.Set("Accept", "application/vnd.github+json")
-	req.Header.Set("Authorization", "Bearer "+c.githubToken)
-	req.Header.Set("X-GitHub-Api-Version", "2022-11-28")
-
-	resp, err := http.DefaultClient.Do(req)
-	if err != nil {
-		return nil, errors.WithStack(err)
-	}
-	defer resp.Body.Close()
-
-	body, err := io.ReadAll(resp.Body)
-	if err != nil {
-		return nil, errors.WithStack(err)
-	}
-
-	return body, nil
 }

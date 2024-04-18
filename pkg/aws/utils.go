@@ -9,6 +9,7 @@ import (
 func GetAWSCodeBuildRunID(
 	targetURL string,
 ) (string, error) {
+	// [^/]+ means any character except '/' and '+' means one or more
 	re := regexp.MustCompile(`amazon\.com/.*/builds/([^/]+)/view`)
 	match := re.FindStringSubmatch(targetURL)
 	if len(match) > 1 {

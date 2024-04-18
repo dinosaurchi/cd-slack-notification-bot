@@ -11,11 +11,11 @@ import (
 
 func LoadInitialCDTrackerState(
 	stateDirPath string,
+	lookBackDuration time.Duration,
 ) (*State, error) {
 	statePath := GetCDTrackerStatePath(stateDirPath)
 	if _, err := os.Stat(statePath); os.IsNotExist(err) {
 		// If the file does not exist, create a new state
-		const lookBackDuration = time.Hour * 300
 		return &State{
 			LastFetchedTimestamp: time.Now().Add(-lookBackDuration),
 			RunIDToCDs:           map[string]*CDInfo{},

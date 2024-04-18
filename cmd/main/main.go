@@ -25,12 +25,14 @@ func main() {
 		panic(err)
 	}
 
-	prTrackerState, err := prtracker.LoadInitialPRTrackerState(stateDirPath)
+	const lookBackDuration = time.Hour * 500
+
+	prTrackerState, err := prtracker.LoadInitialPRTrackerState(stateDirPath, lookBackDuration)
 	if err != nil {
 		panic(err)
 	}
 
-	cdTrackerState, err := cdtracker.LoadInitialCDTrackerState(stateDirPath)
+	cdTrackerState, err := cdtracker.LoadInitialCDTrackerState(stateDirPath, lookBackDuration)
 	if err != nil {
 		panic(err)
 	}

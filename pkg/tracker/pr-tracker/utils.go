@@ -11,11 +11,11 @@ import (
 
 func LoadInitialPRTrackerState(
 	stateDirPath string,
+	lookBackDuration time.Duration,
 ) (*State, error) {
 	statePath := GetPRTrackerStatePath(stateDirPath)
 	if _, err := os.Stat(statePath); os.IsNotExist(err) {
 		// If the file does not exist, create a new state
-		const lookBackDuration = time.Hour * 200
 		return &State{
 			LastFetchedTimestamp: time.Now().Add(-lookBackDuration),
 			PRs:                  map[string]*PRInfo{},

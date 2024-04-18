@@ -49,6 +49,16 @@ func Test_GetAWSCodeBuildRunID(t *testing.T) {
 			targetURL:  "https://ap-southeast-1.console.aws.amazon.com/codebuild/home?region=ap-southeast-1#/builds/go-backend-cd:c3cbbf62-b806-4f5a-b6a9-71fab1b6f11f",
 			expectedID: "",
 		},
+		{
+			// Replace : with / in the Run ID
+			targetURL:  "https://ap-southeast-1.console.aws.amazon.com/codebuild/home?region=ap-southeast-1#/builds/go-backend-cd/c3cbbf62-b806-4f5a-b6a9-71fab1b6f11f/view/new",
+			expectedID: "",
+		},
+		{
+			// Empty Run ID
+			targetURL:  "https://ap-southeast-1.console.aws.amazon.com/codebuild/home?region=ap-southeast-1#/builds//view/new",
+			expectedID: "",
+		},
 	}
 
 	for _, tc := range testCases {

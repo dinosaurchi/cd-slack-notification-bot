@@ -9,9 +9,10 @@ import (
 )
 
 type GithubPRInfo struct {
-	PRNumber  int64
-	RepoName  string
-	RepoOwner string
+	PRNumber        int64
+	RepoName        string
+	RepoOwner       string
+	ThreadTimestamp string
 }
 
 // Return GitPRInfo struct from the message
@@ -21,7 +22,16 @@ func ParseGithubPRInfoFromPROpenedMessage(
 ) (*GithubPRInfo, error) {
 	for _, attachment := range message.Attachments {
 		if attachment.CallbackID == "pr-opened-interaction" {
-			return ParseGithubPRInfoFromTitle(attachment.Title)
+			res, err := ParseGithubPRSubInfoFromTitle(attachment.Title)
+			if err != nil {
+				return nil, errors.WithStack(err)
+			}
+			return &GithubPRInfo{
+				PRNumber:        res.PRNumber,
+				RepoName:        res.RepoName,
+				RepoOwner:       res.RepoOwner,
+				ThreadTimestamp: message.ThreadTimestamp,
+			}, nil
 		}
 	}
 
@@ -29,9 +39,15 @@ func ParseGithubPRInfoFromPROpenedMessage(
 	return nil, nilError
 }
 
-func ParseGithubPRInfoFromTitle(
+type GithubPRSubInfo struct {
+	PRNumber  int64
+	RepoName  string
+	RepoOwner string
+}
+
+func ParseGithubPRSubInfoFromTitle(
 	title string,
-) (*GithubPRInfo, error) {
+) (*GithubPRSubInfo, error) {
 	// [^/]+ means any character except '/' and '+' means one or more
 	re := regexp.MustCompile(`github\.com/([^/\\*+]+)/([^/\\*+]+)/pull/([0-9]+)`)
 	match := re.FindStringSubmatch(title)
@@ -41,7 +57,7 @@ func ParseGithubPRInfoFromTitle(
 		if err != nil {
 			return nil, errors.WithStack(err)
 		}
-		return &GithubPRInfo{
+		return &GithubPRSubInfo{
 			PRNumber:  prNumber,
 			RepoName:  match[2],
 			RepoOwner: match[1],

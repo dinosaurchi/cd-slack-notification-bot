@@ -1,6 +1,7 @@
 package main
 
 import (
+	cdtracker "cd-slack-notification-bot/go/pkg/tracker/cd-tracker"
 	prtracker "cd-slack-notification-bot/go/pkg/tracker/pr-tracker"
 	"cd-slack-notification-bot/go/pkg/utils"
 	"os"
@@ -28,6 +29,11 @@ func main() {
 		panic(err)
 	}
 
+	cdTrackerState, err := cdtracker.LoadInitialCDTrackerState(stateDirPath)
+	if err != nil {
+		panic(err)
+	}
+
 	const waitTime = time.Second * 10
 	const waitTimeForError = time.Second * 120
 
@@ -41,6 +47,19 @@ func main() {
 			time.Sleep(waitTimeForError)
 		} else {
 			err = utils.DumpToFile(prtracker.GetPRTrackerStatePath(stateDirPath), prTrackerState)
+			if err != nil {
+				logrus.Printf("Dump file error: %v\n", err)
+			}
+			time.Sleep(waitTime)
+		}
+
+		// Run CD tracker
+		cdTrackerState, err = cdtracker.RunCDTracker(cdTrackerState, curNow)
+		if err != nil {
+			logrus.Printf("Error: %v\n", err)
+			time.Sleep(waitTimeForError)
+		} else {
+			err = utils.DumpToFile(cdtracker.GetCDTrackerStatePath(stateDirPath), cdTrackerState)
 			if err != nil {
 				logrus.Printf("Dump file error: %v\n", err)
 			}

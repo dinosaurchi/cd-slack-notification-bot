@@ -32,14 +32,15 @@ func main() {
 	const waitTimeForError = time.Second * 120
 
 	for {
-		logrus.Println("Starting PR tracker")
 		curNow := time.Now()
+
+		// Run PR tracker
 		prTrackerState, err = prtracker.RunPRTracker(prTrackerState, curNow)
 		if err != nil {
 			logrus.Printf("Error: %v\n", err)
 			time.Sleep(waitTimeForError)
 		} else {
-			err = utils.DumpToFile(path.Join(stateDirPath, "pr-tracker.json"), prTrackerState)
+			err = utils.DumpToFile(prtracker.GetPRTrackerStatePath(stateDirPath), prTrackerState)
 			if err != nil {
 				logrus.Printf("Dump file error: %v\n", err)
 			}

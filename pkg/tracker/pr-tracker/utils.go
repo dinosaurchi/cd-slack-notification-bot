@@ -12,7 +12,7 @@ import (
 func LoadInitialPRTrackerState(
 	stateDirPath string,
 ) (*State, error) {
-	statePath := path.Join(stateDirPath, "pr-tracker.json")
+	statePath := GetPRTrackerStatePath(stateDirPath)
 	if _, err := os.Stat(statePath); os.IsNotExist(err) {
 		// If the file does not exist, create a new state
 		const lookBackDuration = time.Hour * 200
@@ -30,4 +30,10 @@ func LoadInitialPRTrackerState(
 	}
 
 	return prTrackerState, nil
+}
+
+func GetPRTrackerStatePath(
+	stateDirPath string,
+) string {
+	return path.Join(stateDirPath, "pr-tracker.json")
 }

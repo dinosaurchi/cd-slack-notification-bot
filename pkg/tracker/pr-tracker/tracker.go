@@ -31,6 +31,7 @@ func RunPRTracker(
 	state *State,
 	upTo time.Time,
 ) (*State, error) {
+	logrus.Infof("=== Run PR tracker ====")
 	logrus.Infof("Last fetched timestamp: %v", state.LastFetchedTimestamp.String())
 
 	logrus.Infof("Fetching new PR statuses up to %v", upTo.String())

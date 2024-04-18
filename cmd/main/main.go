@@ -31,8 +31,8 @@ func main() {
 	const waitTime = time.Second * 10
 	const waitTimeForError = time.Second * 120
 
-	logrus.Println("Starting PR tracker")
 	for {
+		logrus.Println("Starting PR tracker")
 		curNow := time.Now()
 		prTrackerState, err = prtracker.RunPRTracker(prTrackerState, curNow)
 		if err != nil {

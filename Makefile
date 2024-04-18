@@ -52,7 +52,7 @@ install-tools:
 			brew upgrade golangci/tap/golangci-lint; \
 		elif [ "$(OS_NAME)" = "Linux" ]; then \
 			echo -e "Install golangci-lint for Linux"; \
-			GO111MODULE=on go get github.com/golangci/golangci-lint/cmd/golangci-lint@v1.46.2; \
+			GO111MODULE=on go get github.com/golangci/golangci-lint/cmd/golangci-lint@v1.57.2; \
 		else \
 			echo -e "Not supported OS: ${OS_NAME}"; \
 			exit 1; \

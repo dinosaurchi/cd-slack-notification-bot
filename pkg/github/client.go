@@ -122,3 +122,36 @@ func (c *Client) GetPullRequestCommits(
 
 	return commits, nil
 }
+
+// Assume that the CD was configured to be triggered by a commit
+// and run on AWS CodeBuild
+func (c *Client) GetCommitCDInfo(
+	commitSHA string,
+) (*CDInfo, error) {
+	targetURL, err := url.JoinPath(
+		APIURL,
+		"repos",
+		c.repoOwner,
+		c.repoName,
+		"commits",
+		commitSHA,
+		"status",
+	)
+	if err != nil {
+		return nil, errors.WithStack(err)
+	}
+
+	body, err := c.getRequest(targetURL, nil)
+	if err != nil {
+		return nil, errors.WithStack(err)
+	}
+
+	// Convert body to CDInfo struct
+	var cdInfo *CDInfo
+	err = json.Unmarshal(body, &cdInfo)
+	if err != nil {
+		return nil, errors.WithStack(err)
+	}
+
+	return cdInfo, nil
+}

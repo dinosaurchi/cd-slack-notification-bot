@@ -4,6 +4,7 @@ import (
 	"cd-slack-notification-bot/go/pkg/config"
 	"cd-slack-notification-bot/go/pkg/github"
 	"cd-slack-notification-bot/go/pkg/slack"
+	"cd-slack-notification-bot/go/pkg/utils"
 	"time"
 
 	"github.com/pkg/errors"
@@ -30,9 +31,37 @@ func RunPRTracker(
 	state *State,
 	upTo time.Time,
 ) (*State, error) {
-	logrus.Infof("Fetching new PR statuses up to %v", upTo.String())
 	logrus.Infof("Last fetched timestamp: %v", state.LastFetchedTimestamp.String())
 
+	logrus.Infof("Fetching new PR statuses up to %v", upTo.String())
+	state, err := fetchNewPRs(state, upTo)
+	if err != nil {
+		return nil, errors.WithStack(err)
+	}
+
+	logrus.Infof("Updating fetched and not resolved PRs")
+	var resolvedCount int
+	state, resolvedCount, err = updateFetchedNotResolvedPRs(state)
+	if err != nil {
+		return nil, errors.WithStack(err)
+	}
+
+	logrus.Infof("Total PRs: %v / %v", resolvedCount, len(state.PRs))
+	logrus.Infof("-------------")
+
+	return state, nil
+}
+
+func isResolved(
+	pr *PRInfo,
+) bool {
+	return len(pr.Statuses) > 0
+}
+
+func fetchNewPRs(
+	state *State,
+	upTo time.Time,
+) (*State, error) {
 	// Fetch new messages to check for new PR's threads
 	slackClient := slack.NewClientDefault()
 	messages, err := slackClient.RetrieveChannelHistory(
@@ -46,8 +75,10 @@ func RunPRTracker(
 
 	githubClient := github.NewClientDefault()
 
+	newTimestamps := []time.Time{}
 	for _, message := range messages {
-		githubPRInfo, err := slack.ParseGithubPRInfoFromPROpenedMessage(message)
+		var githubPRInfo *slack.GithubPRInfo
+		githubPRInfo, err = slack.ParseGithubPRInfoFromPROpenedMessage(message)
 		if err != nil {
 			return nil, errors.WithStack(err)
 		}
@@ -62,6 +93,8 @@ func RunPRTracker(
 			continue
 		}
 
+		newTimestamps = append(newTimestamps, utils.ConvertTimestampStringToTime(githubPRInfo.ThreadTimestamp))
+
 		// Initialize PR info if not exists
 		if _, ok := state.PRs[githubPRInfo.ThreadTimestamp]; !ok {
 			state.PRs[githubPRInfo.ThreadTimestamp] = &PRInfo{
@@ -71,12 +104,13 @@ func RunPRTracker(
 		}
 
 		curPR := state.PRs[githubPRInfo.ThreadTimestamp]
-		if len(curPR.Statuses) > 0 {
+		if isResolved(curPR) {
 			// The PR info is already resolved as it has statuses
 			continue
 		}
 
-		cdInfo, err := githubClient.GetPullRequestCDInfo(githubPRInfo.PRNumber)
+		var cdInfo *github.CDInfo
+		cdInfo, err = githubClient.GetPullRequestCDInfo(githubPRInfo.PRNumber)
 		if err != nil {
 			return nil, errors.WithStack(err)
 		}
@@ -95,20 +129,57 @@ func RunPRTracker(
 		state.PRs[githubPRInfo.ThreadTimestamp] = curPR
 	}
 
-	logrus.Infof("Total PRs: %v / %v", countResolvedPRs(state.PRs), len(state.PRs))
-	logrus.Infof("-------------")
+	maxThreadTimestamp, err := utils.MaxSlice[time.Time](
+		newTimestamps,
+		func(a, b time.Time) (bool, error) {
+			return a.After(b), nil
+		},
+	)
+	if err != nil {
+		return nil, errors.WithStack(err)
+	}
+
+	// Update the last fetched timestamp
+	state.LastFetchedTimestamp = maxThreadTimestamp
 
 	return state, nil
 }
 
-func countResolvedPRs(
-	prs map[string]*PRInfo,
-) int {
-	count := 0
-	for _, pr := range prs {
-		if len(pr.Statuses) > 0 {
-			count++
+func updateFetchedNotResolvedPRs(
+	state *State,
+) (*State, int, error) {
+	githubClient := github.NewClientDefault()
+
+	resolvedCount := 0
+
+	// Update the not resolved PRs
+	for threadTimestamp, pr := range state.PRs {
+		if isResolved(pr) {
+			resolvedCount++
+			continue
+		}
+
+		cdInfo, err := githubClient.GetPullRequestCDInfo(pr.PRNumber)
+		if err != nil {
+			return nil, -1, errors.WithStack(err)
+		}
+
+		newStatuses := []statusInfo{}
+		for _, status := range cdInfo.Statuses {
+			newStatuses = append(
+				newStatuses,
+				statusInfo{
+					State:        status.State,
+					CodeBuildURL: status.TargetURL,
+				},
+			)
+		}
+
+		if len(newStatuses) > 0 {
+			pr.Statuses = newStatuses
+			state.PRs[threadTimestamp] = pr
 		}
 	}
-	return count
+
+	return state, resolvedCount, nil
 }

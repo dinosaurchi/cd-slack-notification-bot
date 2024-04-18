@@ -155,3 +155,20 @@ func (c *Client) GetCommitCDInfo(
 
 	return cdInfo, nil
 }
+
+func (c *Client) GetPullRequestCDInfo(
+	pullRequestNumber uint64,
+) (*CDInfo, error) {
+	commits, err := c.GetPullRequestCommits(pullRequestNumber)
+	if err != nil {
+		return nil, errors.WithStack(err)
+	}
+
+	if len(commits) == 0 {
+		return nil, errors.Errorf("No commits found for PR %d", pullRequestNumber)
+	}
+
+	// Get CD info of the last commit
+	lastCommit := commits[len(commits)-1]
+	return c.GetCommitCDInfo(lastCommit.GetCommitSHA())
+}

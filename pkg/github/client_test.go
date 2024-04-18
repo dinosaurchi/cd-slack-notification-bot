@@ -46,3 +46,14 @@ func Test_GetCommitCDInfo(t *testing.T) {
 
 	t.Log("CD info:", utils.ToJSONStringPanic(pr))
 }
+
+func Test_GetPullRequestCDInfo(t *testing.T) {
+	testutils.SkipCI(t)
+
+	client := github.NewClientDefault()
+	pr, err := client.GetPullRequestCDInfo(588)
+	require.NoError(t, err)
+	require.NotNil(t, pr)
+
+	t.Log("CD info:", utils.ToJSONStringPanic(pr))
+}

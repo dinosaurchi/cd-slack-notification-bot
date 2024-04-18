@@ -49,6 +49,12 @@ func RunCDTracker(
 			return nil, errors.WithStack(err)
 		}
 
+		if message.ThreadTimestamp != "" {
+			allTimestamps = append(allTimestamps, utils.ConvertTimestampStringToTime(message.ThreadTimestamp))
+		} else if message.Timestamp != "" {
+			allTimestamps = append(allTimestamps, utils.ConvertTimestampStringToTime(message.Timestamp))
+		}
+
 		allTimestamps = append(allTimestamps, utils.ConvertTimestampStringToTime(message.ThreadTimestamp))
 
 		if runID != "" {

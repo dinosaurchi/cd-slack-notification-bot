@@ -13,6 +13,7 @@ type GithubPRInfo struct {
 	RepoName        string
 	RepoOwner       string
 	ThreadTimestamp string
+	Timestamp       string
 }
 
 // Return GitPRInfo struct from the message
@@ -31,6 +32,7 @@ func ParseGithubPRInfoFromPROpenedMessage(
 				RepoName:        res.RepoName,
 				RepoOwner:       res.RepoOwner,
 				ThreadTimestamp: message.ThreadTimestamp,
+				Timestamp:       message.Timestamp,
 			}, nil
 		}
 	}

@@ -1,3 +1,5 @@
 .vscode/*.log
 build/bin
 secrets/
+
+.env

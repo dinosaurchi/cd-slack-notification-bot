@@ -7,11 +7,17 @@ define print_title
 	echo -e "\n>>>>> $(1) <<<<<<\n"
 endef
 
+-include ./.env
 
 #####################
 # Template required #
 #####################
 install: install-tools
+install:
+	@if [ ! -f .env ]; then \
+		echo "Creating .env file..."; \
+		cp .env.example .env; \
+	fi
 lint:
 	# Disable fix flag to see the errors
 	@golangci-lint run --fix

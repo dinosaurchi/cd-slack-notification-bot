@@ -76,10 +76,28 @@ install-tools:
 # Development and CI #
 ######################
 test.all:
-	@CGO_ENABLED=1 CI=false gotestsum --format pkgname --no-summary=skipped -- ./... $(flags)
+	@. .env && \
+	GITHUB_REPO_OWNER=${GITHUB_REPO_OWNER} \
+	GITHUB_REPO_NAME=${GITHUB_REPO_NAME} \
+	GITHUB_TOKEN=${GITHUB_TOKEN} \
+	CGO_ENABLED=1 \
+	CI=false \
+	gotestsum \
+		--format pkgname \
+		--no-summary=skipped \
+		-- ./... $(flags)
 
 test.pkg.%:
-	@CGO_ENABLED=1 CI=false gotestsum --format pkgname --no-summary=skipped -- ./pkg/$*/... $(flags)
+	@. .env && \
+	GITHUB_REPO_OWNER=${GITHUB_REPO_OWNER} \
+	GITHUB_REPO_NAME=${GITHUB_REPO_NAME} \
+	GITHUB_TOKEN=${GITHUB_TOKEN} \
+	CGO_ENABLED=1 \
+	CI=false \
+	gotestsum \
+		--format pkgname \
+		--no-summary=skipped \
+		-- ./pkg/$*/... $(flags)
 
 ci:
 	@go env GOCACHE

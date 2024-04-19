@@ -29,7 +29,7 @@ func main() {
 
 	err := godotenv.Load(".env")
 	if err != nil {
-		panic(err)
+		logrus.Warnf("Error loading .env file: %v\n", err)
 	}
 
 	// Use repo owner and repo name to create a state directory

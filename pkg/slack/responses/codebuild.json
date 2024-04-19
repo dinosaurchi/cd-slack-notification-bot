@@ -1,81 +1,1361 @@
-{
-    "type": "message",
-    "ts": "1713314168.766939",
-    "thread_ts": "1713314168.766939",
-    "attachments": [
-        {
-            "color": "#E01E5A",
-            "fallback": ":x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137",
-            "id": 1,
-            "blocks": [
-                {
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": "*\u003chttps://us-west-2.console.aws.amazon.com/codesuite/codebuild/projects/go-backend-cd/build/go-backend-cd:95b976f5-57e6-47f8-8d74-3eddbd2e7ec3/phase?region=us-west-2\u0026amp;referer_source=codestar-notifications\u0026amp;referer_medium=chatbot|:x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137\u003e*"
-                    },
-                    "block_id": "kM28d"
-                },
-                {
-                    "type": "section",
-                    "text": {
-                        "type": "mrkdwn",
-                        "text": "CodeBuild build state *FAILED*.\n\u0026gt; *Failed Phases* ```BUILD: COMMAND_EXECUTION_ERROR: Error while executing command: STAGE=test make test.integ. Reason: exit status 2```"
-                    },
-                    "block_id": "C2qyz"
-                },
-                {
-                    "type": "section",
-                    "block_id": "t1U59",
-                    "fields": [
-                        {
+[
+    {
+        "type": "message",
+        "ts": "1713504890.550739",
+        "thread_ts": "1713504890.550739",
+        "attachments": [
+            {
+                "color": "#E01E5A",
+                "fallback": ":x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137",
+                "id": 1,
+                "blocks": [
+                    {
+                        "type": "section",
+                        "text": {
                             "type": "mrkdwn",
-                            "text": "*Project Name*\ngo-backend-cd"
-                        }
-                    ]
-                },
-                {
-                    "type": "actions",
-                    "block_id": "S1I7H",
-                    "elements": [
-                        {
-                            "type": "button",
-                            "text": {
-                                "type": "plain_text",
-                                "text": "Retry build",
-                                "emoji": true
-                            },
-                            "action_id": "{\"aci\":\"3cd61ad5-d849-4717-a99c-0c601f0cdd12\",\"vh\":\"12898ab0dabbcaaf6a4d04059fe9b53fb773cfddb4f82c899e3ea8dcb409eb08\"}",
-                            "value": "{\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\",\"responseText\":{\"text\":\"Retrying CodeBuild project go-backend-cd with new build ID: {BuildId}.\",\"containsMarkdown\":true},\"service\":\"codebuild\",\"operation\":\"retry-build\",\"parameters\":{\"query\":\"{BuildId: Build.Id}\",\"id\":\"arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:95b976f5-57e6-47f8-8d74-3eddbd2e7ec3\",\"region\":\"us-west-2\"},\"accountId\":\"475910951137\",\"rawCommand\":\"codebuild retry-build --id arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:95b976f5-57e6-47f8-8d74-3eddbd2e7ec3 --query {BuildId: Build.Id} --region us-west-2\",\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\"}"
+                            "text": "*\u003chttps://us-west-2.console.aws.amazon.com/codesuite/codebuild/projects/go-backend-cd/build/go-backend-cd:f739b205-6483-47b5-a75a-75a6f0dbb2be/phase?region=us-west-2\u0026amp;referer_source=codestar-notifications\u0026amp;referer_medium=chatbot|:x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137\u003e*"
                         },
-                        {
-                            "type": "button",
-                            "text": {
-                                "type": "plain_text",
-                                "text": "⋮",
-                                "emoji": true
+                        "block_id": "Az++2"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "CodeBuild build state *FAILED*.\n\u0026gt; *Failed Phases* ```BUILD: COMMAND_EXECUTION_ERROR: Error while executing command: STAGE=test make test.integ. Reason: exit status 2```"
+                        },
+                        "block_id": "KvNrg"
+                    },
+                    {
+                        "type": "section",
+                        "block_id": "uG0Zy",
+                        "fields": [
+                            {
+                                "type": "mrkdwn",
+                                "text": "*Project Name*\ngo-backend-cd"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "actions",
+                        "block_id": "OXAgi",
+                        "elements": [
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "Retry build",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"f76a338a-32f7-413c-9df1-80f69ec51881\",\"vh\":\"cbca6a1e2a76a010932536f52b2f911eb7f5ac1d07729f924e23ebb40400558c\"}",
+                                "value": "{\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\",\"responseText\":{\"text\":\"Retrying CodeBuild project go-backend-cd with new build ID: {BuildId}.\",\"containsMarkdown\":true},\"service\":\"codebuild\",\"operation\":\"retry-build\",\"parameters\":{\"query\":\"{BuildId: Build.Id}\",\"id\":\"arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:f739b205-6483-47b5-a75a-75a6f0dbb2be\",\"region\":\"us-west-2\"},\"accountId\":\"475910951137\",\"rawCommand\":\"codebuild retry-build --id arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:f739b205-6483-47b5-a75a-75a6f0dbb2be --query {BuildId: Build.Id} --region us-west-2\",\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\"}"
                             },
-                            "action_id": "{\"aci\":\"⍝:BotInteractionService/ActionsAttach2\",\"vh\":\"6e3764ace018fe911435e7be47972dd3c11b85def34f69c449136b776bf0a5c8\"}",
-                            "value": "{\"wheatleyChannelArn\":\"arn:aws:chatbot::475910951137:chat-configuration/slack-channel/slack-config-for-aws-beta\",\"value\":\"CodeBuild:Project=go-backend-cd\u0026Status=FAILED\"}"
-                        }
-                    ]
-                }
-            ]
-        }
-    ],
-    "subtype": "bot_message",
-    "bot_id": "B0166DA77RP",
-    "username": "aws",
-    "reply_count": 1,
-    "reply_users": [
-        "UDJ9RLDAP"
-    ],
-    "latest_reply": "1713314207.067979",
-    "replace_original": false,
-    "delete_original": false,
-    "metadata": {
-        "event_type": "",
-        "event_payload": null
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "⋮",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"⍝:BotInteractionService/ActionsAttach2\",\"vh\":\"6e3764ace018fe911435e7be47972dd3c11b85def34f69c449136b776bf0a5c8\"}",
+                                "value": "{\"wheatleyChannelArn\":\"arn:aws:chatbot::475910951137:chat-configuration/slack-channel/slack-config-for-aws-beta\",\"value\":\"CodeBuild:Project=go-backend-cd\u0026Status=FAILED\"}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "subtype": "bot_message",
+        "bot_id": "B0166DA77RP",
+        "username": "aws",
+        "reply_count": 1,
+        "reply_users": [
+            "UDJ9RLDAP"
+        ],
+        "latest_reply": "1713504991.382569",
+        "reactions": [
+            {
+                "name": "skull",
+                "count": 1,
+                "users": [
+                    "UDJ9RLDAP"
+                ]
+            }
+        ],
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
     },
-    "blocks": null
-}
+    {
+        "type": "message",
+        "ts": "1713314168.766939",
+        "thread_ts": "1713314168.766939",
+        "attachments": [
+            {
+                "color": "#E01E5A",
+                "fallback": ":x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137",
+                "id": 1,
+                "blocks": [
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*\u003chttps://us-west-2.console.aws.amazon.com/codesuite/codebuild/projects/go-backend-cd/build/go-backend-cd:95b976f5-57e6-47f8-8d74-3eddbd2e7ec3/phase?region=us-west-2\u0026amp;referer_source=codestar-notifications\u0026amp;referer_medium=chatbot|:x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137\u003e*"
+                        },
+                        "block_id": "kM28d"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "CodeBuild build state *FAILED*.\n\u0026gt; *Failed Phases* ```BUILD: COMMAND_EXECUTION_ERROR: Error while executing command: STAGE=test make test.integ. Reason: exit status 2```"
+                        },
+                        "block_id": "C2qyz"
+                    },
+                    {
+                        "type": "section",
+                        "block_id": "t1U59",
+                        "fields": [
+                            {
+                                "type": "mrkdwn",
+                                "text": "*Project Name*\ngo-backend-cd"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "actions",
+                        "block_id": "S1I7H",
+                        "elements": [
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "Retry build",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"3cd61ad5-d849-4717-a99c-0c601f0cdd12\",\"vh\":\"12898ab0dabbcaaf6a4d04059fe9b53fb773cfddb4f82c899e3ea8dcb409eb08\"}",
+                                "value": "{\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\",\"responseText\":{\"text\":\"Retrying CodeBuild project go-backend-cd with new build ID: {BuildId}.\",\"containsMarkdown\":true},\"service\":\"codebuild\",\"operation\":\"retry-build\",\"parameters\":{\"query\":\"{BuildId: Build.Id}\",\"id\":\"arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:95b976f5-57e6-47f8-8d74-3eddbd2e7ec3\",\"region\":\"us-west-2\"},\"accountId\":\"475910951137\",\"rawCommand\":\"codebuild retry-build --id arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:95b976f5-57e6-47f8-8d74-3eddbd2e7ec3 --query {BuildId: Build.Id} --region us-west-2\",\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\"}"
+                            },
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "⋮",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"⍝:BotInteractionService/ActionsAttach2\",\"vh\":\"6e3764ace018fe911435e7be47972dd3c11b85def34f69c449136b776bf0a5c8\"}",
+                                "value": "{\"wheatleyChannelArn\":\"arn:aws:chatbot::475910951137:chat-configuration/slack-channel/slack-config-for-aws-beta\",\"value\":\"CodeBuild:Project=go-backend-cd\u0026Status=FAILED\"}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "subtype": "bot_message",
+        "bot_id": "B0166DA77RP",
+        "username": "aws",
+        "reply_count": 1,
+        "reply_users": [
+            "UDJ9RLDAP"
+        ],
+        "latest_reply": "1713314207.067979",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
+    },
+    {
+        "type": "message",
+        "ts": "1713314022.448989",
+        "thread_ts": "1713314022.448989",
+        "attachments": [
+            {
+                "color": "#E01E5A",
+                "fallback": ":x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137",
+                "id": 1,
+                "blocks": [
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*\u003chttps://us-west-2.console.aws.amazon.com/codesuite/codebuild/projects/go-backend-cd/build/go-backend-cd:79fbf6fe-cc0e-4e69-a8ba-1290715507fd/phase?region=us-west-2\u0026amp;referer_source=codestar-notifications\u0026amp;referer_medium=chatbot|:x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137\u003e*"
+                        },
+                        "block_id": "XU6o3"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "CodeBuild build state *FAILED*.\n\u0026gt; *Failed Phases* ```BUILD: COMMAND_EXECUTION_ERROR: Error while executing command: STAGE=test make test.integ. Reason: exit status 2```"
+                        },
+                        "block_id": "n9Mxd"
+                    },
+                    {
+                        "type": "section",
+                        "block_id": "32WQJ",
+                        "fields": [
+                            {
+                                "type": "mrkdwn",
+                                "text": "*Project Name*\ngo-backend-cd"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "actions",
+                        "block_id": "6Ptxz",
+                        "elements": [
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "Retry build",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"b99017c8-5744-4c14-b7e3-8a6cdfec7088\",\"vh\":\"d34045e1b08cb6937b06d6b0bf009aa544953241c62c5fed8d49528e7b7a4188\"}",
+                                "value": "{\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\",\"responseText\":{\"text\":\"Retrying CodeBuild project go-backend-cd with new build ID: {BuildId}.\",\"containsMarkdown\":true},\"service\":\"codebuild\",\"operation\":\"retry-build\",\"parameters\":{\"query\":\"{BuildId: Build.Id}\",\"id\":\"arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:79fbf6fe-cc0e-4e69-a8ba-1290715507fd\",\"region\":\"us-west-2\"},\"accountId\":\"475910951137\",\"rawCommand\":\"codebuild retry-build --id arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:79fbf6fe-cc0e-4e69-a8ba-1290715507fd --query {BuildId: Build.Id} --region us-west-2\",\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\"}"
+                            },
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "⋮",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"⍝:BotInteractionService/ActionsAttach2\",\"vh\":\"6e3764ace018fe911435e7be47972dd3c11b85def34f69c449136b776bf0a5c8\"}",
+                                "value": "{\"wheatleyChannelArn\":\"arn:aws:chatbot::475910951137:chat-configuration/slack-channel/slack-config-for-aws-beta\",\"value\":\"CodeBuild:Project=go-backend-cd\u0026Status=FAILED\"}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "subtype": "bot_message",
+        "bot_id": "B0166DA77RP",
+        "username": "aws",
+        "reply_count": 1,
+        "reply_users": [
+            "UDJ9RLDAP"
+        ],
+        "latest_reply": "1713314034.525299",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
+    },
+    {
+        "type": "message",
+        "ts": "1713310247.924829",
+        "thread_ts": "1713310247.924829",
+        "attachments": [
+            {
+                "color": "#E01E5A",
+                "fallback": ":x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137",
+                "id": 1,
+                "blocks": [
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*\u003chttps://us-west-2.console.aws.amazon.com/codesuite/codebuild/projects/go-backend-cd/build/go-backend-cd:8776f54f-ce45-4229-99a9-aa62a0f750ee/phase?region=us-west-2\u0026amp;referer_source=codestar-notifications\u0026amp;referer_medium=chatbot|:x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137\u003e*"
+                        },
+                        "block_id": "KwwM9"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "CodeBuild build state *FAILED*.\n\u0026gt; *Failed Phases* ```BUILD: COMMAND_EXECUTION_ERROR: Error while executing command: STAGE=test make test.integ. Reason: exit status 2```"
+                        },
+                        "block_id": "JVcRB"
+                    },
+                    {
+                        "type": "section",
+                        "block_id": "iDNeM",
+                        "fields": [
+                            {
+                                "type": "mrkdwn",
+                                "text": "*Project Name*\ngo-backend-cd"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "actions",
+                        "block_id": "QN0Ti",
+                        "elements": [
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "Retry build",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"b22a73d9-a962-4038-8a2d-b96804b30471\",\"vh\":\"4a617e0c5d9c066c2254224e24009443bbecb3134d0fc85b6ae58fed835093ac\"}",
+                                "value": "{\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\",\"responseText\":{\"text\":\"Retrying CodeBuild project go-backend-cd with new build ID: {BuildId}.\",\"containsMarkdown\":true},\"service\":\"codebuild\",\"operation\":\"retry-build\",\"parameters\":{\"query\":\"{BuildId: Build.Id}\",\"id\":\"arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:8776f54f-ce45-4229-99a9-aa62a0f750ee\",\"region\":\"us-west-2\"},\"accountId\":\"475910951137\",\"rawCommand\":\"codebuild retry-build --id arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:8776f54f-ce45-4229-99a9-aa62a0f750ee --query {BuildId: Build.Id} --region us-west-2\",\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\"}"
+                            },
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "⋮",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"⍝:BotInteractionService/ActionsAttach2\",\"vh\":\"6e3764ace018fe911435e7be47972dd3c11b85def34f69c449136b776bf0a5c8\"}",
+                                "value": "{\"wheatleyChannelArn\":\"arn:aws:chatbot::475910951137:chat-configuration/slack-channel/slack-config-for-aws-beta\",\"value\":\"CodeBuild:Project=go-backend-cd\u0026Status=FAILED\"}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "subtype": "bot_message",
+        "bot_id": "B0166DA77RP",
+        "username": "aws",
+        "reply_count": 2,
+        "reply_users": [
+            "UDJ9RLDAP"
+        ],
+        "latest_reply": "1713310474.938989",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
+    },
+    {
+        "type": "message",
+        "ts": "1713287401.360809",
+        "thread_ts": "1713287401.360809",
+        "attachments": [
+            {
+                "color": "#E01E5A",
+                "fallback": ":x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137",
+                "id": 1,
+                "blocks": [
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*\u003chttps://us-west-2.console.aws.amazon.com/codesuite/codebuild/projects/go-backend-cd/build/go-backend-cd:35eab56c-d475-4c5c-acee-b59ed94cbf06/phase?region=us-west-2\u0026amp;referer_source=codestar-notifications\u0026amp;referer_medium=chatbot|:x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137\u003e*"
+                        },
+                        "block_id": "BKnio"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "CodeBuild build state *FAILED*.\n\u0026gt; *Failed Phases* ```BUILD: COMMAND_EXECUTION_ERROR: Error while executing command: STAGE=test make test.integ. Reason: exit status 2```"
+                        },
+                        "block_id": "MW92Q"
+                    },
+                    {
+                        "type": "section",
+                        "block_id": "Nmrxu",
+                        "fields": [
+                            {
+                                "type": "mrkdwn",
+                                "text": "*Project Name*\ngo-backend-cd"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "actions",
+                        "block_id": "dGBxI",
+                        "elements": [
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "Retry build",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"265a28fa-fa83-46b2-8640-1f27e8298161\",\"vh\":\"8ea7b7b237198c17464efdb0f66aa7f74dc6b4d3bfa82a2c5e2e9e74bbf06362\"}",
+                                "value": "{\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\",\"responseText\":{\"text\":\"Retrying CodeBuild project go-backend-cd with new build ID: {BuildId}.\",\"containsMarkdown\":true},\"service\":\"codebuild\",\"operation\":\"retry-build\",\"parameters\":{\"query\":\"{BuildId: Build.Id}\",\"id\":\"arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:35eab56c-d475-4c5c-acee-b59ed94cbf06\",\"region\":\"us-west-2\"},\"accountId\":\"475910951137\",\"rawCommand\":\"codebuild retry-build --id arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:35eab56c-d475-4c5c-acee-b59ed94cbf06 --query {BuildId: Build.Id} --region us-west-2\",\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\"}"
+                            },
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "⋮",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"⍝:BotInteractionService/ActionsAttach2\",\"vh\":\"6e3764ace018fe911435e7be47972dd3c11b85def34f69c449136b776bf0a5c8\"}",
+                                "value": "{\"wheatleyChannelArn\":\"arn:aws:chatbot::475910951137:chat-configuration/slack-channel/slack-config-for-aws-beta\",\"value\":\"CodeBuild:Project=go-backend-cd\u0026Status=FAILED\"}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "last_read": "1713335924.506459",
+        "subscribed": true,
+        "subtype": "bot_message",
+        "bot_id": "B0166DA77RP",
+        "username": "aws",
+        "reply_count": 8,
+        "reply_users": [
+            "U029BGB417G",
+            "UDJ9RLDAP",
+            "U01HX808VB4"
+        ],
+        "latest_reply": "1713335924.506459",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
+    },
+    {
+        "type": "message",
+        "ts": "1712191751.115899",
+        "thread_ts": "1712191751.115899",
+        "attachments": [
+            {
+                "color": "#E01E5A",
+                "fallback": ":x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137",
+                "id": 1,
+                "blocks": [
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*\u003chttps://us-west-2.console.aws.amazon.com/codesuite/codebuild/projects/go-backend-cd/build/go-backend-cd:c9ac5d97-8c9e-4209-8015-e15e5e29ffee/phase?region=us-west-2\u0026amp;referer_source=codestar-notifications\u0026amp;referer_medium=chatbot|:x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137\u003e*"
+                        },
+                        "block_id": "qUyfT"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "CodeBuild build state *FAILED*.\n\u0026gt; *Failed Phases* ```INSTALL: COMMAND_EXECUTION_ERROR: Error while executing command: docker network create private-network. Reason: exit status 1```"
+                        },
+                        "block_id": "FJV9c"
+                    },
+                    {
+                        "type": "section",
+                        "block_id": "8jGs9",
+                        "fields": [
+                            {
+                                "type": "mrkdwn",
+                                "text": "*Project Name*\ngo-backend-cd"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "actions",
+                        "block_id": "lm/IA",
+                        "elements": [
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "Retry build",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"aa795cbe-32d9-4202-a1e2-a39577bbab64\",\"vh\":\"9d9bd2d35e8431f3cb1b350d31728860607d0b84aea0f330bc78ce8b1bab7ca9\"}",
+                                "value": "{\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\",\"responseText\":{\"text\":\"Retrying CodeBuild project go-backend-cd with new build ID: {BuildId}.\",\"containsMarkdown\":true},\"service\":\"codebuild\",\"operation\":\"retry-build\",\"parameters\":{\"query\":\"{BuildId: Build.Id}\",\"id\":\"arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:c9ac5d97-8c9e-4209-8015-e15e5e29ffee\",\"region\":\"us-west-2\"},\"accountId\":\"475910951137\",\"rawCommand\":\"codebuild retry-build --id arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:c9ac5d97-8c9e-4209-8015-e15e5e29ffee --query {BuildId: Build.Id} --region us-west-2\",\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\"}"
+                            },
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "⋮",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"⍝:BotInteractionService/ActionsAttach2\",\"vh\":\"6e3764ace018fe911435e7be47972dd3c11b85def34f69c449136b776bf0a5c8\"}",
+                                "value": "{\"wheatleyChannelArn\":\"arn:aws:chatbot::475910951137:chat-configuration/slack-channel/slack-config-for-aws-beta\",\"value\":\"CodeBuild:Project=go-backend-cd\u0026Status=FAILED\"}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "subtype": "bot_message",
+        "bot_id": "B0166DA77RP",
+        "username": "aws",
+        "reply_count": 3,
+        "reply_users": [
+            "UDJ9RLDAP"
+        ],
+        "latest_reply": "1712194893.368639",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
+    },
+    {
+        "type": "message",
+        "ts": "1712113928.723669",
+        "thread_ts": "1712113928.723669",
+        "attachments": [
+            {
+                "color": "#E01E5A",
+                "fallback": ":x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137",
+                "id": 1,
+                "blocks": [
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*\u003chttps://us-west-2.console.aws.amazon.com/codesuite/codebuild/projects/go-backend-cd/build/go-backend-cd:acf71aea-9890-475d-be4a-3aede7867304/phase?region=us-west-2\u0026amp;referer_source=codestar-notifications\u0026amp;referer_medium=chatbot|:x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137\u003e*"
+                        },
+                        "block_id": "sE9kx"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "CodeBuild build state *FAILED*.\n\u0026gt; *Failed Phases* ```BUILD: COMMAND_EXECUTION_ERROR: Error while executing command: STAGE=test make test.integ. Reason: exit status 2```"
+                        },
+                        "block_id": "NSGbN"
+                    },
+                    {
+                        "type": "section",
+                        "block_id": "Yzkpe",
+                        "fields": [
+                            {
+                                "type": "mrkdwn",
+                                "text": "*Project Name*\ngo-backend-cd"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "actions",
+                        "block_id": "fcMGi",
+                        "elements": [
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "Retry build",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"b6644cdc-2981-488c-a2aa-ea206b90894f\",\"vh\":\"e62a3507a392eff75a7893401785c7b45609523aaf9b3d75d01685976dad4567\"}",
+                                "value": "{\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\",\"responseText\":{\"text\":\"Retrying CodeBuild project go-backend-cd with new build ID: {BuildId}.\",\"containsMarkdown\":true},\"service\":\"codebuild\",\"operation\":\"retry-build\",\"parameters\":{\"query\":\"{BuildId: Build.Id}\",\"id\":\"arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:acf71aea-9890-475d-be4a-3aede7867304\",\"region\":\"us-west-2\"},\"accountId\":\"475910951137\",\"rawCommand\":\"codebuild retry-build --id arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:acf71aea-9890-475d-be4a-3aede7867304 --query {BuildId: Build.Id} --region us-west-2\",\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\"}"
+                            },
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "⋮",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"⍝:BotInteractionService/ActionsAttach2\",\"vh\":\"6e3764ace018fe911435e7be47972dd3c11b85def34f69c449136b776bf0a5c8\"}",
+                                "value": "{\"wheatleyChannelArn\":\"arn:aws:chatbot::475910951137:chat-configuration/slack-channel/slack-config-for-aws-beta\",\"value\":\"CodeBuild:Project=go-backend-cd\u0026Status=FAILED\"}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "last_read": "1712125134.569259",
+        "subscribed": true,
+        "subtype": "bot_message",
+        "bot_id": "B0166DA77RP",
+        "username": "aws",
+        "reply_count": 13,
+        "reply_users": [
+            "UDJ9RLDAP",
+            "U01HX808VB4"
+        ],
+        "latest_reply": "1712125134.569259",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
+    },
+    {
+        "type": "message",
+        "ts": "1712023625.442739",
+        "thread_ts": "1712023625.442739",
+        "attachments": [
+            {
+                "color": "#E01E5A",
+                "fallback": ":x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137",
+                "id": 1,
+                "blocks": [
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*\u003chttps://us-west-2.console.aws.amazon.com/codesuite/codebuild/projects/go-backend-cd/build/go-backend-cd:324eeac4-f25f-4dde-9fca-5af449dfd221/phase?region=us-west-2\u0026amp;referer_source=codestar-notifications\u0026amp;referer_medium=chatbot|:x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137\u003e*"
+                        },
+                        "block_id": "fKrtl"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "CodeBuild build state *FAILED*.\n\u0026gt; *Failed Phases* ```BUILD: COMMAND_EXECUTION_ERROR: Error while executing command: STAGE=test make test.integ. Reason: exit status 2```"
+                        },
+                        "block_id": "kVo9s"
+                    },
+                    {
+                        "type": "section",
+                        "block_id": "Hzkxi",
+                        "fields": [
+                            {
+                                "type": "mrkdwn",
+                                "text": "*Project Name*\ngo-backend-cd"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "actions",
+                        "block_id": "gW+qS",
+                        "elements": [
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "Retry build",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"ddca5d6b-c2d5-4f9b-ad6a-0c4b92d77553\",\"vh\":\"de5c58b2f78b3db220c5ca8c24ce99888166d1d0a3e3280d44b078a4569b8cae\"}",
+                                "value": "{\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\",\"responseText\":{\"text\":\"Retrying CodeBuild project go-backend-cd with new build ID: {BuildId}.\",\"containsMarkdown\":true},\"service\":\"codebuild\",\"operation\":\"retry-build\",\"parameters\":{\"query\":\"{BuildId: Build.Id}\",\"id\":\"arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:324eeac4-f25f-4dde-9fca-5af449dfd221\",\"region\":\"us-west-2\"},\"accountId\":\"475910951137\",\"rawCommand\":\"codebuild retry-build --id arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:324eeac4-f25f-4dde-9fca-5af449dfd221 --query {BuildId: Build.Id} --region us-west-2\",\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\"}"
+                            },
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "⋮",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"⍝:BotInteractionService/ActionsAttach2\",\"vh\":\"6e3764ace018fe911435e7be47972dd3c11b85def34f69c449136b776bf0a5c8\"}",
+                                "value": "{\"wheatleyChannelArn\":\"arn:aws:chatbot::475910951137:chat-configuration/slack-channel/slack-config-for-aws-beta\",\"value\":\"CodeBuild:Project=go-backend-cd\u0026Status=FAILED\"}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "subtype": "bot_message",
+        "bot_id": "B0166DA77RP",
+        "username": "aws",
+        "reply_count": 1,
+        "reply_users": [
+            "UHWJU3NKD"
+        ],
+        "latest_reply": "1712023762.165969",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
+    },
+    {
+        "type": "message",
+        "ts": "1712023191.329699",
+        "thread_ts": "1712023191.329699",
+        "attachments": [
+            {
+                "color": "#E01E5A",
+                "fallback": ":x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137",
+                "id": 1,
+                "blocks": [
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*\u003chttps://us-west-2.console.aws.amazon.com/codesuite/codebuild/projects/go-backend-cd/build/go-backend-cd:254d25bc-3b75-4d0e-9aa9-f46ba7c79cdc/phase?region=us-west-2\u0026amp;referer_source=codestar-notifications\u0026amp;referer_medium=chatbot|:x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137\u003e*"
+                        },
+                        "block_id": "iVhx0"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "CodeBuild build state *FAILED*.\n\u0026gt; *Failed Phases* ```INSTALL: COMMAND_EXECUTION_ERROR: Error while executing command: docker network create private-network. Reason: exit status 1```"
+                        },
+                        "block_id": "HeTj0"
+                    },
+                    {
+                        "type": "section",
+                        "block_id": "HgiBC",
+                        "fields": [
+                            {
+                                "type": "mrkdwn",
+                                "text": "*Project Name*\ngo-backend-cd"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "actions",
+                        "block_id": "2mFtT",
+                        "elements": [
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "Retry build",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"fd45be2d-76a0-4ca9-ac71-3371c1d53fb0\",\"vh\":\"b0f18bd422e11485bcb9b574dc87d387f55ca50793ef1eb32601841fc9a5a423\"}",
+                                "value": "{\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\",\"responseText\":{\"text\":\"Retrying CodeBuild project go-backend-cd with new build ID: {BuildId}.\",\"containsMarkdown\":true},\"service\":\"codebuild\",\"operation\":\"retry-build\",\"parameters\":{\"query\":\"{BuildId: Build.Id}\",\"id\":\"arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:254d25bc-3b75-4d0e-9aa9-f46ba7c79cdc\",\"region\":\"us-west-2\"},\"accountId\":\"475910951137\",\"rawCommand\":\"codebuild retry-build --id arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:254d25bc-3b75-4d0e-9aa9-f46ba7c79cdc --query {BuildId: Build.Id} --region us-west-2\",\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\"}"
+                            },
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "⋮",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"⍝:BotInteractionService/ActionsAttach2\",\"vh\":\"6e3764ace018fe911435e7be47972dd3c11b85def34f69c449136b776bf0a5c8\"}",
+                                "value": "{\"wheatleyChannelArn\":\"arn:aws:chatbot::475910951137:chat-configuration/slack-channel/slack-config-for-aws-beta\",\"value\":\"CodeBuild:Project=go-backend-cd\u0026Status=FAILED\"}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "subtype": "bot_message",
+        "bot_id": "B0166DA77RP",
+        "username": "aws",
+        "reply_count": 1,
+        "reply_users": [
+            "UDJ9RLDAP"
+        ],
+        "latest_reply": "1712023244.463889",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
+    },
+    {
+        "type": "message",
+        "ts": "1712023016.779429",
+        "thread_ts": "1712023016.779429",
+        "attachments": [
+            {
+                "color": "#E01E5A",
+                "fallback": ":x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137",
+                "id": 1,
+                "blocks": [
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*\u003chttps://us-west-2.console.aws.amazon.com/codesuite/codebuild/projects/go-backend-cd/build/go-backend-cd:a3112b4c-b6ca-4154-8537-185a8bc4610f/phase?region=us-west-2\u0026amp;referer_source=codestar-notifications\u0026amp;referer_medium=chatbot|:x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137\u003e*"
+                        },
+                        "block_id": "YXt/0"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "CodeBuild build state *FAILED*.\n\u0026gt; *Failed Phases* ```BUILD: COMMAND_EXECUTION_ERROR: Error while executing command: STAGE=test make test.integ. Reason: exit status 2```"
+                        },
+                        "block_id": "qnZ1U"
+                    },
+                    {
+                        "type": "section",
+                        "block_id": "R3rQ6",
+                        "fields": [
+                            {
+                                "type": "mrkdwn",
+                                "text": "*Project Name*\ngo-backend-cd"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "actions",
+                        "block_id": "VshQF",
+                        "elements": [
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "Retry build",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"ccb6ab54-5f7d-47cd-aa8a-b97f9a408c53\",\"vh\":\"26f9026b0e2cb7d2b1f2350ca058b12b7fe51a5c40a9e3e0ff47247a2b8b3e29\"}",
+                                "value": "{\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\",\"responseText\":{\"text\":\"Retrying CodeBuild project go-backend-cd with new build ID: {BuildId}.\",\"containsMarkdown\":true},\"service\":\"codebuild\",\"operation\":\"retry-build\",\"parameters\":{\"query\":\"{BuildId: Build.Id}\",\"id\":\"arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:a3112b4c-b6ca-4154-8537-185a8bc4610f\",\"region\":\"us-west-2\"},\"accountId\":\"475910951137\",\"rawCommand\":\"codebuild retry-build --id arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:a3112b4c-b6ca-4154-8537-185a8bc4610f --query {BuildId: Build.Id} --region us-west-2\",\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\"}"
+                            },
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "⋮",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"⍝:BotInteractionService/ActionsAttach2\",\"vh\":\"6e3764ace018fe911435e7be47972dd3c11b85def34f69c449136b776bf0a5c8\"}",
+                                "value": "{\"wheatleyChannelArn\":\"arn:aws:chatbot::475910951137:chat-configuration/slack-channel/slack-config-for-aws-beta\",\"value\":\"CodeBuild:Project=go-backend-cd\u0026Status=FAILED\"}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "subtype": "bot_message",
+        "bot_id": "B0166DA77RP",
+        "username": "aws",
+        "reply_count": 1,
+        "reply_users": [
+            "UDJ9RLDAP"
+        ],
+        "latest_reply": "1712023234.451709",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
+    },
+    {
+        "type": "message",
+        "ts": "1712022325.133199",
+        "thread_ts": "1712022325.133199",
+        "attachments": [
+            {
+                "color": "#E01E5A",
+                "fallback": ":x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137",
+                "id": 1,
+                "blocks": [
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*\u003chttps://us-west-2.console.aws.amazon.com/codesuite/codebuild/projects/go-backend-cd/build/go-backend-cd:48ae0708-1f3e-45d7-888b-fbc9196c696a/phase?region=us-west-2\u0026amp;referer_source=codestar-notifications\u0026amp;referer_medium=chatbot|:x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137\u003e*"
+                        },
+                        "block_id": "864Bq"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "CodeBuild build state *FAILED*.\n\u0026gt; *Failed Phases* ```INSTALL: COMMAND_EXECUTION_ERROR: Error while executing command: docker network create private-network. Reason: exit status 1```"
+                        },
+                        "block_id": "xAgUR"
+                    },
+                    {
+                        "type": "section",
+                        "block_id": "TdIBH",
+                        "fields": [
+                            {
+                                "type": "mrkdwn",
+                                "text": "*Project Name*\ngo-backend-cd"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "actions",
+                        "block_id": "uiJT1",
+                        "elements": [
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "Retry build",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"d8651290-373f-4c72-aa25-906dccdfd8ea\",\"vh\":\"241357b745d0606db49a8a9feb576520cad3e9f5bf27e25db5a53bbf9f6d5b6a\"}",
+                                "value": "{\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\",\"responseText\":{\"text\":\"Retrying CodeBuild project go-backend-cd with new build ID: {BuildId}.\",\"containsMarkdown\":true},\"service\":\"codebuild\",\"operation\":\"retry-build\",\"parameters\":{\"query\":\"{BuildId: Build.Id}\",\"id\":\"arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:48ae0708-1f3e-45d7-888b-fbc9196c696a\",\"region\":\"us-west-2\"},\"accountId\":\"475910951137\",\"rawCommand\":\"codebuild retry-build --id arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:48ae0708-1f3e-45d7-888b-fbc9196c696a --query {BuildId: Build.Id} --region us-west-2\",\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\"}"
+                            },
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "⋮",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"⍝:BotInteractionService/ActionsAttach2\",\"vh\":\"6e3764ace018fe911435e7be47972dd3c11b85def34f69c449136b776bf0a5c8\"}",
+                                "value": "{\"wheatleyChannelArn\":\"arn:aws:chatbot::475910951137:chat-configuration/slack-channel/slack-config-for-aws-beta\",\"value\":\"CodeBuild:Project=go-backend-cd\u0026Status=FAILED\"}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "subtype": "bot_message",
+        "bot_id": "B0166DA77RP",
+        "username": "aws",
+        "reply_count": 1,
+        "reply_users": [
+            "UDJ9RLDAP"
+        ],
+        "latest_reply": "1712022345.910809",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
+    },
+    {
+        "type": "message",
+        "ts": "1712021686.247769",
+        "thread_ts": "1712021686.247769",
+        "attachments": [
+            {
+                "color": "#E01E5A",
+                "fallback": ":x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137",
+                "id": 1,
+                "blocks": [
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*\u003chttps://us-west-2.console.aws.amazon.com/codesuite/codebuild/projects/go-backend-cd/build/go-backend-cd:75bfb7c4-5909-441b-b44c-07352143f465/phase?region=us-west-2\u0026amp;referer_source=codestar-notifications\u0026amp;referer_medium=chatbot|:x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137\u003e*"
+                        },
+                        "block_id": "AD/0O"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "CodeBuild build state *FAILED*.\n\u0026gt; *Failed Phases* ```BUILD: COMMAND_EXECUTION_ERROR: Error while executing command: STAGE=test make test.integ. Reason: exit status 2```"
+                        },
+                        "block_id": "dSFmL"
+                    },
+                    {
+                        "type": "section",
+                        "block_id": "8wpNy",
+                        "fields": [
+                            {
+                                "type": "mrkdwn",
+                                "text": "*Project Name*\ngo-backend-cd"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "actions",
+                        "block_id": "9++j9",
+                        "elements": [
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "Retry build",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"b63ea793-2716-4152-9c92-8ce86f517c60\",\"vh\":\"f7b3092f11b67a79be19f8e7b7905183a40841d02a567a33cf62f83de064a2ca\"}",
+                                "value": "{\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\",\"responseText\":{\"text\":\"Retrying CodeBuild project go-backend-cd with new build ID: {BuildId}.\",\"containsMarkdown\":true},\"service\":\"codebuild\",\"operation\":\"retry-build\",\"parameters\":{\"query\":\"{BuildId: Build.Id}\",\"id\":\"arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:75bfb7c4-5909-441b-b44c-07352143f465\",\"region\":\"us-west-2\"},\"accountId\":\"475910951137\",\"rawCommand\":\"codebuild retry-build --id arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:75bfb7c4-5909-441b-b44c-07352143f465 --query {BuildId: Build.Id} --region us-west-2\",\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\"}"
+                            },
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "⋮",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"⍝:BotInteractionService/ActionsAttach2\",\"vh\":\"6e3764ace018fe911435e7be47972dd3c11b85def34f69c449136b776bf0a5c8\"}",
+                                "value": "{\"wheatleyChannelArn\":\"arn:aws:chatbot::475910951137:chat-configuration/slack-channel/slack-config-for-aws-beta\",\"value\":\"CodeBuild:Project=go-backend-cd\u0026Status=FAILED\"}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "subtype": "bot_message",
+        "bot_id": "B0166DA77RP",
+        "username": "aws",
+        "reply_count": 1,
+        "reply_users": [
+            "UDJ9RLDAP"
+        ],
+        "latest_reply": "1712022355.432609",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
+    },
+    {
+        "type": "message",
+        "ts": "1712020695.014539",
+        "thread_ts": "1712020695.014539",
+        "attachments": [
+            {
+                "color": "#E01E5A",
+                "fallback": ":x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137",
+                "id": 1,
+                "blocks": [
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*\u003chttps://us-west-2.console.aws.amazon.com/codesuite/codebuild/projects/go-backend-cd/build/go-backend-cd:5637ebdb-9881-45ed-b746-49af9b03123d/phase?region=us-west-2\u0026amp;referer_source=codestar-notifications\u0026amp;referer_medium=chatbot|:x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137\u003e*"
+                        },
+                        "block_id": "m0NdI"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "CodeBuild build state *FAILED*.\n\u0026gt; *Failed Phases* ```INSTALL: COMMAND_EXECUTION_ERROR: Error while executing command: docker network create private-network. Reason: exit status 1```"
+                        },
+                        "block_id": "/9s2g"
+                    },
+                    {
+                        "type": "section",
+                        "block_id": "/Fh50",
+                        "fields": [
+                            {
+                                "type": "mrkdwn",
+                                "text": "*Project Name*\ngo-backend-cd"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "actions",
+                        "block_id": "dNuJp",
+                        "elements": [
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "Retry build",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"9b59cde5-a5e8-4ebd-927f-78afc21026b5\",\"vh\":\"4301e50e8bb41fd390f863948ef4e653b0ea5c756ae3107428ddf5d043a57509\"}",
+                                "value": "{\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\",\"responseText\":{\"text\":\"Retrying CodeBuild project go-backend-cd with new build ID: {BuildId}.\",\"containsMarkdown\":true},\"service\":\"codebuild\",\"operation\":\"retry-build\",\"parameters\":{\"query\":\"{BuildId: Build.Id}\",\"id\":\"arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:5637ebdb-9881-45ed-b746-49af9b03123d\",\"region\":\"us-west-2\"},\"accountId\":\"475910951137\",\"rawCommand\":\"codebuild retry-build --id arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:5637ebdb-9881-45ed-b746-49af9b03123d --query {BuildId: Build.Id} --region us-west-2\",\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\"}"
+                            },
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "⋮",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"⍝:BotInteractionService/ActionsAttach2\",\"vh\":\"6e3764ace018fe911435e7be47972dd3c11b85def34f69c449136b776bf0a5c8\"}",
+                                "value": "{\"wheatleyChannelArn\":\"arn:aws:chatbot::475910951137:chat-configuration/slack-channel/slack-config-for-aws-beta\",\"value\":\"CodeBuild:Project=go-backend-cd\u0026Status=FAILED\"}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "subtype": "bot_message",
+        "bot_id": "B0166DA77RP",
+        "username": "aws",
+        "reply_count": 1,
+        "reply_users": [
+            "UDJ9RLDAP"
+        ],
+        "latest_reply": "1712021311.956799",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
+    },
+    {
+        "type": "message",
+        "ts": "1712020123.369749",
+        "thread_ts": "1712020123.369749",
+        "attachments": [
+            {
+                "color": "#E01E5A",
+                "fallback": ":x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137",
+                "id": 1,
+                "blocks": [
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*\u003chttps://us-west-2.console.aws.amazon.com/codesuite/codebuild/projects/go-backend-cd/build/go-backend-cd:64c4b741-39f9-4056-831f-339dcff8e7b8/phase?region=us-west-2\u0026amp;referer_source=codestar-notifications\u0026amp;referer_medium=chatbot|:x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137\u003e*"
+                        },
+                        "block_id": "aqqP+"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "CodeBuild build state *FAILED*.\n\u0026gt; *Failed Phases* ```BUILD: COMMAND_EXECUTION_ERROR: Error while executing command: STAGE=test make test.integ. Reason: exit status 2```"
+                        },
+                        "block_id": "h3f5D"
+                    },
+                    {
+                        "type": "section",
+                        "block_id": "uMCVM",
+                        "fields": [
+                            {
+                                "type": "mrkdwn",
+                                "text": "*Project Name*\ngo-backend-cd"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "actions",
+                        "block_id": "1DOav",
+                        "elements": [
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "Retry build",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"97512aa9-2e9d-40fd-81ab-09eba30c689c\",\"vh\":\"f67040350d1e5f94a4a57aa0edba48b5784d303dec9039bc2524726ba525de22\"}",
+                                "value": "{\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\",\"responseText\":{\"text\":\"Retrying CodeBuild project go-backend-cd with new build ID: {BuildId}.\",\"containsMarkdown\":true},\"service\":\"codebuild\",\"operation\":\"retry-build\",\"parameters\":{\"query\":\"{BuildId: Build.Id}\",\"id\":\"arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:64c4b741-39f9-4056-831f-339dcff8e7b8\",\"region\":\"us-west-2\"},\"accountId\":\"475910951137\",\"rawCommand\":\"codebuild retry-build --id arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:64c4b741-39f9-4056-831f-339dcff8e7b8 --query {BuildId: Build.Id} --region us-west-2\",\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\"}"
+                            },
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "⋮",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"⍝:BotInteractionService/ActionsAttach2\",\"vh\":\"6e3764ace018fe911435e7be47972dd3c11b85def34f69c449136b776bf0a5c8\"}",
+                                "value": "{\"wheatleyChannelArn\":\"arn:aws:chatbot::475910951137:chat-configuration/slack-channel/slack-config-for-aws-beta\",\"value\":\"CodeBuild:Project=go-backend-cd\u0026Status=FAILED\"}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "subtype": "bot_message",
+        "bot_id": "B0166DA77RP",
+        "username": "aws",
+        "reply_count": 1,
+        "reply_users": [
+            "UDJ9RLDAP"
+        ],
+        "latest_reply": "1712021308.909849",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
+    },
+    {
+        "type": "message",
+        "ts": "1712017774.343209",
+        "thread_ts": "1712017774.343209",
+        "attachments": [
+            {
+                "color": "#E01E5A",
+                "fallback": ":x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137",
+                "id": 1,
+                "blocks": [
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*\u003chttps://us-west-2.console.aws.amazon.com/codesuite/codebuild/projects/go-backend-cd/build/go-backend-cd:ec461b53-829e-42fb-a3b0-9240b8a1fb0d/phase?region=us-west-2\u0026amp;referer_source=codestar-notifications\u0026amp;referer_medium=chatbot|:x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137\u003e*"
+                        },
+                        "block_id": "TwxVq"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "CodeBuild build state *FAILED*.\n\u0026gt; *Failed Phases* ```BUILD: COMMAND_EXECUTION_ERROR: Error while executing command: STAGE=test make test.integ. Reason: exit status 2```"
+                        },
+                        "block_id": "3pV4f"
+                    },
+                    {
+                        "type": "section",
+                        "block_id": "B17Qk",
+                        "fields": [
+                            {
+                                "type": "mrkdwn",
+                                "text": "*Project Name*\ngo-backend-cd"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "actions",
+                        "block_id": "Tum93",
+                        "elements": [
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "Retry build",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"d809c8af-0f3b-4acb-b1e3-f3530a785418\",\"vh\":\"efd3bdf59bba31db781470554dae350b1109c06dbb9df9cc6cdb64ca14b35d66\"}",
+                                "value": "{\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\",\"responseText\":{\"text\":\"Retrying CodeBuild project go-backend-cd with new build ID: {BuildId}.\",\"containsMarkdown\":true},\"service\":\"codebuild\",\"operation\":\"retry-build\",\"parameters\":{\"query\":\"{BuildId: Build.Id}\",\"id\":\"arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:ec461b53-829e-42fb-a3b0-9240b8a1fb0d\",\"region\":\"us-west-2\"},\"accountId\":\"475910951137\",\"rawCommand\":\"codebuild retry-build --id arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:ec461b53-829e-42fb-a3b0-9240b8a1fb0d --query {BuildId: Build.Id} --region us-west-2\",\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\"}"
+                            },
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "⋮",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"⍝:BotInteractionService/ActionsAttach2\",\"vh\":\"6e3764ace018fe911435e7be47972dd3c11b85def34f69c449136b776bf0a5c8\"}",
+                                "value": "{\"wheatleyChannelArn\":\"arn:aws:chatbot::475910951137:chat-configuration/slack-channel/slack-config-for-aws-beta\",\"value\":\"CodeBuild:Project=go-backend-cd\u0026Status=FAILED\"}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "subtype": "bot_message",
+        "bot_id": "B0166DA77RP",
+        "username": "aws",
+        "reply_count": 1,
+        "reply_users": [
+            "UDJ9RLDAP"
+        ],
+        "latest_reply": "1712021305.826199",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
+    },
+    {
+        "type": "message",
+        "ts": "1711978687.271909",
+        "thread_ts": "1711978687.271909",
+        "attachments": [
+            {
+                "color": "#E01E5A",
+                "fallback": ":x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137",
+                "id": 1,
+                "blocks": [
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "*\u003chttps://us-west-2.console.aws.amazon.com/codesuite/codebuild/projects/go-backend-cd/build/go-backend-cd:f6bc20b5-057c-4832-a025-72c6e85cb43b/phase?region=us-west-2\u0026amp;referer_source=codestar-notifications\u0026amp;referer_medium=chatbot|:x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137\u003e*"
+                        },
+                        "block_id": "znKOB"
+                    },
+                    {
+                        "type": "section",
+                        "text": {
+                            "type": "mrkdwn",
+                            "text": "CodeBuild build state *FAILED*.\n\u0026gt; *Failed Phases* ```BUILD: COMMAND_EXECUTION_ERROR: Error while executing command: STAGE=test make test.integ. Reason: exit status 2```"
+                        },
+                        "block_id": "blqDJ"
+                    },
+                    {
+                        "type": "section",
+                        "block_id": "xC0aD",
+                        "fields": [
+                            {
+                                "type": "mrkdwn",
+                                "text": "*Project Name*\ngo-backend-cd"
+                            }
+                        ]
+                    },
+                    {
+                        "type": "actions",
+                        "block_id": "LgPRD",
+                        "elements": [
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "Retry build",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"062d77c9-20f1-439b-ad49-b7622011db1f\",\"vh\":\"4ac570d7c9ec4d69764cee8bcedac447d718193a51fbbfd3eb6af213e13739e3\"}",
+                                "value": "{\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\",\"responseText\":{\"text\":\"Retrying CodeBuild project go-backend-cd with new build ID: {BuildId}.\",\"containsMarkdown\":true},\"service\":\"codebuild\",\"operation\":\"retry-build\",\"parameters\":{\"query\":\"{BuildId: Build.Id}\",\"id\":\"arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:f6bc20b5-057c-4832-a025-72c6e85cb43b\",\"region\":\"us-west-2\"},\"accountId\":\"475910951137\",\"rawCommand\":\"codebuild retry-build --id arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:f6bc20b5-057c-4832-a025-72c6e85cb43b --query {BuildId: Build.Id} --region us-west-2\",\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\"}"
+                            },
+                            {
+                                "type": "button",
+                                "text": {
+                                    "type": "plain_text",
+                                    "text": "⋮",
+                                    "emoji": true
+                                },
+                                "action_id": "{\"aci\":\"⍝:BotInteractionService/ActionsAttach2\",\"vh\":\"6e3764ace018fe911435e7be47972dd3c11b85def34f69c449136b776bf0a5c8\"}",
+                                "value": "{\"wheatleyChannelArn\":\"arn:aws:chatbot::475910951137:chat-configuration/slack-channel/slack-config-for-aws-beta\",\"value\":\"CodeBuild:Project=go-backend-cd\u0026Status=FAILED\"}"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ],
+        "last_read": "1712126015.413609",
+        "subscribed": true,
+        "subtype": "bot_message",
+        "bot_id": "B0166DA77RP",
+        "username": "aws",
+        "reply_count": 6,
+        "reply_users": [
+            "U029BGB417G",
+            "U01HX808VB4",
+            "UDJ9RLDAP",
+            "U016BMXRV6E"
+        ],
+        "latest_reply": "1712126015.413609",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
+    },
+    {
+        "client_msg_id": "306d30d3-7e5a-4e32-a955-b0f4bfbdf28a",
+        "type": "message",
+        "user": "UHWJU3NKD",
+        "text": "\u003c@UDJ9RLDAP\u003e can we re-use this channel for Astra Auth token refresh Cronjob failures? Or do you want us to create a new channel for this?",
+        "ts": "1711756782.724219",
+        "thread_ts": "1711756782.724219",
+        "reply_count": 2,
+        "reply_users": [
+            "UDJ9RLDAP",
+            "U029BGB417G"
+        ],
+        "latest_reply": "1711767095.270649",
+        "team": "TDKE5QQ8P",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": [
+            {
+                "type": "rich_text",
+                "block_id": "opNWz",
+                "elements": [
+                    {
+                        "type": "rich_text_section",
+                        "elements": [
+                            {
+                                "type": "user",
+                                "user_id": "UDJ9RLDAP"
+                            },
+                            {
+                                "type": "text",
+                                "text": " can we re-use this channel for Astra Auth token refresh Cronjob failures? Or do you want us to create a new channel for this?"
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]

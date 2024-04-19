@@ -133,11 +133,38 @@ func Test_GetAWSCodeBuildRunID(t *testing.T) {
 }
 
 func Test_ParseRunIDFromCodeBuildMessage(t *testing.T) {
-	message := slackgo.Message{}
-	err := utils.LoadFromFile("./responses/codebuild.json", &message)
+	messages := []slackgo.Message{}
+	err := utils.LoadFromFile("./responses/codebuild.json", &messages)
 	require.NoError(t, err)
+	require.Len(t, messages, 17)
 
-	runID, err := slack.ParseRunIDFromCodeBuildMessage(message)
-	require.NoError(t, err)
-	require.Equal(t, "go-backend-cd:95b976f5-57e6-47f8-8d74-3eddbd2e7ec3", runID)
+	runIDs := []string{}
+	for _, message := range messages {
+		runID, err := slack.ParseRunIDFromCodeBuildMessage(message)
+		require.NoError(t, err)
+		runIDs = append(runIDs, runID)
+	}
+	require.Len(t, runIDs, len(messages))
+
+	expectedRunIDs := []string{
+		"go-backend-cd:f739b205-6483-47b5-a75a-75a6f0dbb2be",
+		"go-backend-cd:95b976f5-57e6-47f8-8d74-3eddbd2e7ec3",
+		"go-backend-cd:79fbf6fe-cc0e-4e69-a8ba-1290715507fd",
+		"go-backend-cd:8776f54f-ce45-4229-99a9-aa62a0f750ee",
+		"go-backend-cd:35eab56c-d475-4c5c-acee-b59ed94cbf06",
+		"go-backend-cd:c9ac5d97-8c9e-4209-8015-e15e5e29ffee",
+		"go-backend-cd:acf71aea-9890-475d-be4a-3aede7867304",
+		"go-backend-cd:324eeac4-f25f-4dde-9fca-5af449dfd221",
+		"go-backend-cd:254d25bc-3b75-4d0e-9aa9-f46ba7c79cdc",
+		"go-backend-cd:a3112b4c-b6ca-4154-8537-185a8bc4610f",
+		"go-backend-cd:48ae0708-1f3e-45d7-888b-fbc9196c696a",
+		"go-backend-cd:75bfb7c4-5909-441b-b44c-07352143f465",
+		"go-backend-cd:5637ebdb-9881-45ed-b746-49af9b03123d",
+		"go-backend-cd:64c4b741-39f9-4056-831f-339dcff8e7b8",
+		"go-backend-cd:ec461b53-829e-42fb-a3b0-9240b8a1fb0d",
+		"go-backend-cd:f6bc20b5-057c-4832-a025-72c6e85cb43b",
+		"",
+	}
+
+	require.Equal(t, expectedRunIDs, runIDs)
 }

@@ -2,8 +2,10 @@ package slack_test
 
 import (
 	"cd-slack-notification-bot/go/pkg/slack"
+	"cd-slack-notification-bot/go/pkg/utils"
 	"testing"
 
+	slackgo "github.com/slack-go/slack"
 	"github.com/stretchr/testify/require"
 )
 
@@ -128,4 +130,14 @@ func Test_GetAWSCodeBuildRunID(t *testing.T) {
 			require.Equal(t, tc.expectedID, runID)
 		})
 	}
+}
+
+func Test_ParseRunIDFromCodeBuildMessage(t *testing.T) {
+	message := slackgo.Message{}
+	err := utils.LoadFromFile("./responses/codebuild.json", &message)
+	require.NoError(t, err)
+
+	runID, err := slack.ParseRunIDFromCodeBuildMessage(message)
+	require.NoError(t, err)
+	require.Equal(t, "go-backend-cd:95b976f5-57e6-47f8-8d74-3eddbd2e7ec3", runID)
 }

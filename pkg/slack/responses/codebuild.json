@@ -1,0 +1,81 @@
+{
+    "type": "message",
+    "ts": "1713314168.766939",
+    "thread_ts": "1713314168.766939",
+    "attachments": [
+        {
+            "color": "#E01E5A",
+            "fallback": ":x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137",
+            "id": 1,
+            "blocks": [
+                {
+                    "type": "section",
+                    "text": {
+                        "type": "mrkdwn",
+                        "text": "*\u003chttps://us-west-2.console.aws.amazon.com/codesuite/codebuild/projects/go-backend-cd/build/go-backend-cd:95b976f5-57e6-47f8-8d74-3eddbd2e7ec3/phase?region=us-west-2\u0026amp;referer_source=codestar-notifications\u0026amp;referer_medium=chatbot|:x: AWS CodeBuild Notification | us-west-2 | Account: 475910951137\u003e*"
+                    },
+                    "block_id": "kM28d"
+                },
+                {
+                    "type": "section",
+                    "text": {
+                        "type": "mrkdwn",
+                        "text": "CodeBuild build state *FAILED*.\n\u0026gt; *Failed Phases* ```BUILD: COMMAND_EXECUTION_ERROR: Error while executing command: STAGE=test make test.integ. Reason: exit status 2```"
+                    },
+                    "block_id": "C2qyz"
+                },
+                {
+                    "type": "section",
+                    "block_id": "t1U59",
+                    "fields": [
+                        {
+                            "type": "mrkdwn",
+                            "text": "*Project Name*\ngo-backend-cd"
+                        }
+                    ]
+                },
+                {
+                    "type": "actions",
+                    "block_id": "S1I7H",
+                    "elements": [
+                        {
+                            "type": "button",
+                            "text": {
+                                "type": "plain_text",
+                                "text": "Retry build",
+                                "emoji": true
+                            },
+                            "action_id": "{\"aci\":\"3cd61ad5-d849-4717-a99c-0c601f0cdd12\",\"vh\":\"12898ab0dabbcaaf6a4d04059fe9b53fb773cfddb4f82c899e3ea8dcb409eb08\"}",
+                            "value": "{\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\",\"responseText\":{\"text\":\"Retrying CodeBuild project go-backend-cd with new build ID: {BuildId}.\",\"containsMarkdown\":true},\"service\":\"codebuild\",\"operation\":\"retry-build\",\"parameters\":{\"query\":\"{BuildId: Build.Id}\",\"id\":\"arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:95b976f5-57e6-47f8-8d74-3eddbd2e7ec3\",\"region\":\"us-west-2\"},\"accountId\":\"475910951137\",\"rawCommand\":\"codebuild retry-build --id arn:aws:codebuild:us-west-2:475910951137:build/go-backend-cd:95b976f5-57e6-47f8-8d74-3eddbd2e7ec3 --query {BuildId: Build.Id} --region us-west-2\",\"actionType\":\"ACTIONS_PLATFORM_CLI_COMMAND_ACTION_TYPE\"}"
+                        },
+                        {
+                            "type": "button",
+                            "text": {
+                                "type": "plain_text",
+                                "text": "⋮",
+                                "emoji": true
+                            },
+                            "action_id": "{\"aci\":\"⍝:BotInteractionService/ActionsAttach2\",\"vh\":\"6e3764ace018fe911435e7be47972dd3c11b85def34f69c449136b776bf0a5c8\"}",
+                            "value": "{\"wheatleyChannelArn\":\"arn:aws:chatbot::475910951137:chat-configuration/slack-channel/slack-config-for-aws-beta\",\"value\":\"CodeBuild:Project=go-backend-cd\u0026Status=FAILED\"}"
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "subtype": "bot_message",
+    "bot_id": "B0166DA77RP",
+    "username": "aws",
+    "reply_count": 1,
+    "reply_users": [
+        "UDJ9RLDAP"
+    ],
+    "latest_reply": "1713314207.067979",
+    "replace_original": false,
+    "delete_original": false,
+    "metadata": {
+        "event_type": "",
+        "event_payload": null
+    },
+    "blocks": null
+}

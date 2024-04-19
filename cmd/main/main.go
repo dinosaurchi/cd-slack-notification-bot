@@ -118,7 +118,26 @@ func runAlls(
 	}
 
 	// Run notifier
-	notifierState, err = notifier.RunNotifier(notifierState, matchState)
+	if config.GetConfigDefault().Slack.IsSendingSlackNotification {
+		_, err = runNotifier(notifierState, matchState, stateDirPath)
+		if err != nil {
+			return errors.Errorf("error running Notifier: %v", err)
+		}
+	} else {
+		logrus.Warn("Do not send Slack notification")
+	}
+
+	logrus.Infof("**** End running at %v ****\n\n", time.Now().Format(time.RFC3339))
+
+	return nil
+}
+
+func runNotifier(
+	notifierState *notifier.State,
+	matchState *matcher.State,
+	stateDirPath string,
+) (*notifier.State, error) {
+	notifierState, err := notifier.RunNotifier(notifierState, matchState)
 	if err != nil {
 		logrus.Errorf("error running Notifier: %v", err)
 	}
@@ -127,11 +146,9 @@ func runAlls(
 		// Only dump the notifier state if there is no error
 		err = utils.DumpToFile(notifier.GetNotifierStatePath(stateDirPath), notifierState)
 		if err != nil {
-			return errors.Errorf("dump Notifier file error: %v", err)
+			return nil, errors.Errorf("dump Notifier file error: %v", err)
 		}
 	}
 
-	logrus.Infof("**** End running at %v ****\n\n", time.Now().Format(time.RFC3339))
-
-	return nil
+	return notifierState, nil
 }

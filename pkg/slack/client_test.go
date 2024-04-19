@@ -66,3 +66,14 @@ func Test_ReplyThread(t *testing.T) {
 
 	t.Log("Output timestamp: ", ts)
 }
+
+func Test_CreateThread(t *testing.T) {
+	testutils.SkipCI(t)
+
+	client := slack.NewClientDefault()
+	ts, err := client.CreateThread("C020Z9BBRR6", "Test create thread")
+	require.NoError(t, err)
+	require.NotEmpty(t, ts)
+
+	t.Log("Output timestamp: ", ts)
+}

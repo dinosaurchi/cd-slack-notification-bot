@@ -13,6 +13,7 @@ type Client interface {
 	RetrieveChannelHistory(channelID string, from time.Time, to time.Time) ([]slack.Message, error)
 	GetMessageLink(channelID string, timestamp string) (string, error)
 	ReplyThread(channelID string, threadTimestamp string, message string) (string, error)
+	CreateThread(channelID string, message string) (string, error)
 }
 
 type clientImplementation struct {
@@ -106,6 +107,21 @@ func (c *clientImplementation) ReplyThread(
 		channelID,
 		slack.MsgOptionText(text, false),
 		slack.MsgOptionTS(threadTimestamp),
+	)
+	if err != nil {
+		return "", errors.WithStack(err)
+	}
+	return outputTimestamp, nil
+}
+
+func (c *clientImplementation) CreateThread(
+	channelID string,
+	text string,
+) (string, error) {
+	api := slack.New(c.token)
+	_, outputTimestamp, _, err := api.SendMessage(
+		channelID,
+		slack.MsgOptionText(text, false),
 	)
 	if err != nil {
 		return "", errors.WithStack(err)

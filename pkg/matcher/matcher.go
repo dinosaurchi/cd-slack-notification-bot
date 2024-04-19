@@ -24,10 +24,14 @@ func RunMatcher(
 	cdTrackerState *cdtracker.State,
 	prTrackerState *prtracker.State,
 ) (*State, error) {
+	logrus.Infof("=== Run Matcher ====")
+
 	runIDsToPRs, err := mapRunIDsToPRs(prTrackerState)
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
+
+	matchedCount := 0
 
 	for runID, cdInfo := range cdTrackerState.RunIDToCDs {
 		_, ok := state.ResolvedRunIDs[runID]
@@ -45,6 +49,8 @@ func RunMatcher(
 			continue
 		}
 
+		matchedCount++
+
 		state.ResolvedRunIDs[runID] = &MatchedResult{
 			CDThreadTimestamp: cdInfo.ThreadTimestamp,
 			PRThreadTimestamp: prInfo.ThreadTimestamp,
@@ -52,6 +58,9 @@ func RunMatcher(
 			Statuses:          toStateStrings(prInfo),
 		}
 	}
+
+	logrus.Infof("Matched %v new RunIDs", matchedCount)
+	logrus.Infof("-------------")
 
 	return state, nil
 }

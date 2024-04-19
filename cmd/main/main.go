@@ -35,14 +35,15 @@ func main() {
 		panic(err)
 	}
 
-	const lookBackDuration = time.Hour * 500
+	const lookBackDurationPRTracker = time.Hour * 500
+	const lookBackDurationCDTracker = time.Hour * 24
 
-	prTrackerState, err := prtracker.LoadInitialPRTrackerState(stateDirPath, lookBackDuration)
+	prTrackerState, err := prtracker.LoadInitialPRTrackerState(stateDirPath, lookBackDurationPRTracker)
 	if err != nil {
 		panic(err)
 	}
 
-	cdTrackerState, err := cdtracker.LoadInitialCDTrackerState(stateDirPath, lookBackDuration)
+	cdTrackerState, err := cdtracker.LoadInitialCDTrackerState(stateDirPath, lookBackDurationCDTracker)
 	if err != nil {
 		panic(err)
 	}
@@ -62,6 +63,7 @@ func main() {
 
 	for {
 		curNow := time.Now()
+
 		err := runAlls(prTrackerState, cdTrackerState, matcherState, notifierState, stateDirPath, curNow)
 		if err != nil {
 			logrus.Errorf("Error: %v\n", err)
@@ -80,6 +82,8 @@ func runAlls(
 	stateDirPath string,
 	curNow time.Time,
 ) error {
+	logrus.Infof("**** Start running at %v ****\n", curNow.Format(time.RFC3339))
+
 	// Run PR tracker
 	prTrackerState, err := prtracker.RunPRTracker(prTrackerState, curNow)
 	if err != nil {
@@ -126,6 +130,8 @@ func runAlls(
 			return errors.Errorf("dump Notifier file error: %v", err)
 		}
 	}
+
+	logrus.Infof("**** End running at %v ****\n\n", time.Now().Format(time.RFC3339))
 
 	return nil
 }

@@ -35,6 +35,8 @@ func RunNotifierCustom(
 	codeBuildNotificationChannelID string,
 	slackClient slack.Client,
 ) (*State, error) {
+	logrus.Infof("=== Run notifier ====")
+
 	for runID, matchedResult := range matcherState.ResolvedRunIDs {
 		_, ok := state.CDNotified[runID]
 		if !ok {
@@ -56,6 +58,8 @@ func RunNotifierCustom(
 			state.PRNotified[runID] = true
 		}
 	}
+
+	logrus.Infof("-------------")
 
 	return state, nil
 }
@@ -91,7 +95,7 @@ func notifyCDThread(
 		return errors.WithStack(err)
 	}
 
-	logrus.Infoln("Notified CD thread at:", timestamp)
+	logrus.Infof("Notified CD thread at timestamp %v of channel %v", timestamp, codeBuildNotificationChannelID)
 
 	return nil
 }
@@ -127,7 +131,7 @@ func notifyPRThread(
 		return errors.WithStack(err)
 	}
 
-	logrus.Infoln("Notified PR thread at:", timestamp)
+	logrus.Infof("Notified PR thread at timestamp %v of channel %v", timestamp, githubPRNotificationChannelID)
 
 	return nil
 }

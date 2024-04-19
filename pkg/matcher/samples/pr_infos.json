@@ -1,0 +1,27 @@
+[
+    {
+        "prNumber": 591,
+        "statuses": [
+            {
+                "state": "failure",
+                "codeBuildURL": "https://us-west-2.console.aws.amazon.com/codebuild/home?region=us-west-2#/builds/go-backend-cd:acf71aea-9890-475d-be4a-3aede7867304/view/new"
+            }
+        ],
+        "threadTimestamp": "1712018792.980219"
+    },
+    {
+        "prNumber": 615,
+        "statuses": [],
+        "threadTimestamp": "1713476246.235249"
+    },
+    {
+        "prNumber": 612,
+        "statuses": [
+            {
+                "state": "failure",
+                "codeBuildURL": "https://us-west-2.console.aws.amazon.com/codebuild/home?region=us-west-2#/builds/go-backend-cd:8776f54f-ce45-4229-99a9-aa62a0f750ee/view/new"
+            }
+        ],
+        "threadTimestamp": "1713309575.593759"
+    }
+]

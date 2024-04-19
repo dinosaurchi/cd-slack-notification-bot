@@ -1,0 +1,100 @@
+{
+    "resolvedRunIDs": {
+        "go-backend-cd:4783432423432": {
+            "cdThreadTimestamp": "163234234.0001",
+            "prThreadTimestamp": "163234666.05465",
+            "prNumber": 123,
+            "statuses": [
+                "success"
+            ]
+        },
+        "go-backend-cd:35eab56c-d475-4c5c-acee-b59ed94cbf06": {
+            "cdThreadTimestamp": "1713287401.360809",
+            "prThreadTimestamp": "1712367312.681009",
+            "prNumber": 562,
+            "statuses": [
+                "failure"
+            ]
+        },
+        "go-backend-cd:48ae0708-1f3e-45d7-888b-fbc9196c696a": {
+            "cdThreadTimestamp": "1712022325.133199",
+            "prThreadTimestamp": "1712022122.589189",
+            "prNumber": 593,
+            "statuses": [
+                "failure"
+            ]
+        },
+        "go-backend-cd:75bfb7c4-5909-441b-b44c-07352143f465": {
+            "cdThreadTimestamp": "1712021686.247769",
+            "prThreadTimestamp": "1712014137.788709",
+            "prNumber": 590,
+            "statuses": [
+                "failure"
+            ]
+        },
+        "go-backend-cd:79fbf6fe-cc0e-4e69-a8ba-1290715507fd": {
+            "cdThreadTimestamp": "1713314022.448989",
+            "prThreadTimestamp": "1713261718.923639",
+            "prNumber": 614,
+            "statuses": [
+                "failure"
+            ]
+        },
+        "go-backend-cd:8776f54f-ce45-4229-99a9-aa62a0f750ee": {
+            "cdThreadTimestamp": "1713310247.924829",
+            "prThreadTimestamp": "1713309575.593759",
+            "prNumber": 612,
+            "statuses": [
+                "failure"
+            ]
+        },
+        "go-backend-cd:95b976f5-57e6-47f8-8d74-3eddbd2e7ec3": {
+            "cdThreadTimestamp": "1713314168.766939",
+            "prThreadTimestamp": "1713214083.649599",
+            "prNumber": 613,
+            "statuses": [
+                "failure"
+            ]
+        },
+        "go-backend-cd:a3112b4c-b6ca-4154-8537-185a8bc4610f": {
+            "cdThreadTimestamp": "1712023016.779429",
+            "prThreadTimestamp": "1712022103.500779",
+            "prNumber": 592,
+            "statuses": [
+                "failure"
+            ]
+        },
+        "go-backend-cd:acf71aea-9890-475d-be4a-3aede7867304": {
+            "cdThreadTimestamp": "1712113928.723669",
+            "prThreadTimestamp": "1712018792.980219",
+            "prNumber": 591,
+            "statuses": [
+                "failure"
+            ]
+        },
+        "go-backend-cd:c9ac5d97-8c9e-4209-8015-e15e5e29ffee": {
+            "cdThreadTimestamp": "1712191751.115899",
+            "prThreadTimestamp": "1712190498.228609",
+            "prNumber": 601,
+            "statuses": [
+                "failure"
+            ]
+        },
+        "go-backend-cd:ec461b53-829e-42fb-a3b0-9240b8a1fb0d": {
+            "cdThreadTimestamp": "1712017774.343209",
+            "prThreadTimestamp": "1712011335.697009",
+            "prNumber": 589,
+            "statuses": [
+                "failure"
+            ]
+        },
+        "go-backend-cd:f739b205-6483-47b5-a75a-75a6f0dbb2be": {
+            "cdThreadTimestamp": "1713504890.550739",
+            "prThreadTimestamp": "1713201758.279579",
+            "prNumber": 596,
+            "statuses": [
+                "failure"
+            ]
+        }
+    }
+}

@@ -3,6 +3,7 @@ package main
 import (
 	"cd-slack-notification-bot/go/pkg/config"
 	"cd-slack-notification-bot/go/pkg/matcher"
+	"cd-slack-notification-bot/go/pkg/notifier"
 	cdtracker "cd-slack-notification-bot/go/pkg/tracker/cd-tracker"
 	prtracker "cd-slack-notification-bot/go/pkg/tracker/pr-tracker"
 	"cd-slack-notification-bot/go/pkg/utils"
@@ -51,12 +52,17 @@ func main() {
 		panic(err)
 	}
 
+	notifierState, err := notifier.LoadInitialNotifierState(stateDirPath)
+	if err != nil {
+		panic(err)
+	}
+
 	const waitTime = time.Minute * 3
 	const waitTimeForError = time.Minute * 6
 
 	for {
 		curNow := time.Now()
-		err := runAlls(prTrackerState, cdTrackerState, matcherState, stateDirPath, curNow)
+		err := runAlls(prTrackerState, cdTrackerState, matcherState, notifierState, stateDirPath, curNow)
 		if err != nil {
 			logrus.Errorf("Error: %v\n", err)
 			time.Sleep(waitTimeForError)
@@ -70,6 +76,7 @@ func runAlls(
 	prTrackerState *prtracker.State,
 	cdTrackerState *cdtracker.State,
 	matchState *matcher.State,
+	notifierState *notifier.State,
 	stateDirPath string,
 	curNow time.Time,
 ) error {
@@ -104,6 +111,20 @@ func runAlls(
 	err = utils.DumpToFile(matcher.GetMatcherStatePath(stateDirPath), matchState)
 	if err != nil {
 		return errors.Errorf("dump Matcher file error: %v", err)
+	}
+
+	// Run notifier
+	notifierState, err = notifier.RunNotifier(notifierState, matchState)
+	if err != nil {
+		logrus.Errorf("error running Notifier: %v", err)
+	}
+
+	if err == nil {
+		// Only dump the notifier state if there is no error
+		err = utils.DumpToFile(notifier.GetNotifierStatePath(stateDirPath), notifierState)
+		if err != nil {
+			return errors.Errorf("dump Notifier file error: %v", err)
+		}
 	}
 
 	return nil

@@ -1,0 +1,28 @@
+{
+    "resolvedRunIDs": {
+        "go-backend-cd:35eab56c-d475-4c5c-acee-b59ed94cbf06": {
+            "cdThreadTimestamp": "1713520431.848949",
+            "prThreadTimestamp": "1713520099.572789",
+            "prNumber": 111,
+            "statuses": [
+                "failure"
+            ]
+        },
+        "go-backend-cd:48ae0708-1f3e-45d7-888b-fbc9196c696a": {
+            "cdThreadTimestamp": "1713520435.645729",
+            "prThreadTimestamp": "1713520320.094759",
+            "prNumber": 222,
+            "statuses": [
+                "failure"
+            ]
+        },
+        "go-backend-cd:75bfb7c4-5909-441b-b44c-07352143f465": {
+            "cdThreadTimestamp": "1713520438.425719",
+            "prThreadTimestamp": "1713520323.715549",
+            "prNumber": 333,
+            "statuses": [
+                "success"
+            ]
+        }
+    }
+}

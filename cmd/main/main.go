@@ -1,6 +1,7 @@
 package main
 
 import (
+	"cd-slack-notification-bot/go/pkg/config"
 	cdtracker "cd-slack-notification-bot/go/pkg/tracker/cd-tracker"
 	prtracker "cd-slack-notification-bot/go/pkg/tracker/pr-tracker"
 	"cd-slack-notification-bot/go/pkg/utils"
@@ -19,7 +20,14 @@ func main() {
 		panic(err)
 	}
 
-	stateDirPath := path.Join(".", "state")
+	// Use repo owner and repo name to create a state directory
+	// to avoid conflicts between different repositories
+	stateDirPath := path.Join(
+		".",
+		"state",
+		config.GetConfigDefault().Github.RepoOwner,
+		config.GetConfigDefault().Github.RepoName,
+	)
 	err = os.MkdirAll(stateDirPath, 0755)
 	if err != nil {
 		panic(err)

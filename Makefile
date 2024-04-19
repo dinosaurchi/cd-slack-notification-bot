@@ -112,6 +112,24 @@ buildandrun.entrypoint.%: build.entrypoint.%
 	@./build/bin/$* $(flags)
 
 ################
+# Remote utils #
+################
+
+remote.upload: key_path=~/.ssh/pi_databot_rsa
+remote.upload: host_user=pi
+remote.upload: host_address=pi-databot.local
+remote.upload:
+	@if [ "$(file_path)" = "" ]; then \
+		echo -e "Must provide file_path argument"; \
+		exit 1; \
+	fi && \
+	if [ "$(dest_path)" = "" ]; then \
+		echo -e "Must provide dest_path argument"; \
+		exit 1; \
+	fi && \
+	rsync -h -P -e "ssh -i $(key_path)" -a $(file_path) $(host_user)@$(host_address):$(dest_path)
+
+################
 # Docker utils #
 ################
 docker.login:

@@ -71,6 +71,11 @@ func mapRunIDsToPRs(prTrackerState *prtracker.State) (map[string]*prtracker.PRIn
 		if err != nil {
 			return nil, errors.WithStack(err)
 		}
+		if prRunID == "" {
+			// The PR is not merged yet, so it does not have a runID
+			continue
+		}
+
 		_, ok := runIDsToPRs[prRunID]
 		if ok {
 			return nil, errors.Errorf("runID %s is duplicated", prRunID)

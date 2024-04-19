@@ -59,6 +59,7 @@ func isResolved(
 	return len(pr.Statuses) > 0
 }
 
+//nolint:gocognit // TODO: need to refactor this function
 func fetchNewPRs(
 	state *State,
 	upTo time.Time,

@@ -49,13 +49,8 @@ func RunCDTracker(
 			return nil, errors.WithStack(err)
 		}
 
-		if message.ThreadTimestamp != "" {
-			allTimestamps = append(allTimestamps, utils.ConvertTimestampStringToTime(message.ThreadTimestamp))
-		} else if message.Timestamp != "" {
-			allTimestamps = append(allTimestamps, utils.ConvertTimestampStringToTime(message.Timestamp))
-		}
-
-		allTimestamps = append(allTimestamps, utils.ConvertTimestampStringToTime(message.ThreadTimestamp))
+		threadTimestamp := slack.GetThreadTimestamp(message.ThreadTimestamp, message.Timestamp)
+		allTimestamps = append(allTimestamps, utils.ConvertTimestampStringToTime(threadTimestamp))
 
 		if runID != "" {
 			if _, ok := state.RunIDToCDs[runID]; ok {
@@ -64,7 +59,7 @@ func RunCDTracker(
 
 			hasRunIDCount++
 			state.RunIDToCDs[runID] = &CDInfo{
-				ThreadTimestamp: message.ThreadTimestamp,
+				ThreadTimestamp: threadTimestamp,
 				RunID:           runID,
 			}
 		}

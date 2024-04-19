@@ -60,7 +60,6 @@ func isResolved(
 	return len(pr.Statuses) > 0
 }
 
-//nolint:gocognit // TODO: need to refactor this function
 func fetchNewPRs(
 	state *State,
 	upTo time.Time,
@@ -96,27 +95,19 @@ func fetchNewPRs(
 			continue
 		}
 
-		if githubPRInfo.ThreadTimestamp != "" {
-			newTimestamps = append(newTimestamps, utils.ConvertTimestampStringToTime(githubPRInfo.ThreadTimestamp))
-		} else if githubPRInfo.Timestamp != "" {
-			newTimestamps = append(newTimestamps, utils.ConvertTimestampStringToTime(githubPRInfo.Timestamp))
-		}
-
-		if githubPRInfo.ThreadTimestamp == "" {
-			/// Not a thread message, we can ignore
-			continue
-		}
+		threadTimestamp := slack.GetThreadTimestamp(githubPRInfo.ThreadTimestamp, message.Timestamp)
+		newTimestamps = append(newTimestamps, utils.ConvertTimestampStringToTime(threadTimestamp))
 
 		// Initialize PR info if not exists
-		if _, ok := state.PRs[githubPRInfo.ThreadTimestamp]; !ok {
-			state.PRs[githubPRInfo.ThreadTimestamp] = &PRInfo{
+		if _, ok := state.PRs[threadTimestamp]; !ok {
+			state.PRs[threadTimestamp] = &PRInfo{
 				PRNumber:        githubPRInfo.PRNumber,
 				Statuses:        []StatusInfo{},
-				ThreadTimestamp: githubPRInfo.ThreadTimestamp,
+				ThreadTimestamp: threadTimestamp,
 			}
 		}
 
-		curPR := state.PRs[githubPRInfo.ThreadTimestamp]
+		curPR := state.PRs[threadTimestamp]
 		if isResolved(curPR) {
 			// The PR info is already resolved as it has statuses
 			continue
@@ -131,7 +122,7 @@ func fetchNewPRs(
 		curPR.Statuses = getCDInfoStatuses(cdInfo)
 
 		// Update PR info
-		state.PRs[githubPRInfo.ThreadTimestamp] = curPR
+		state.PRs[threadTimestamp] = curPR
 	}
 
 	maxThreadTimestamp, err := utils.MaxSlice[time.Time](

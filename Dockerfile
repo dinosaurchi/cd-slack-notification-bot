@@ -27,4 +27,7 @@ FROM alpine:latest
 WORKDIR /bin
 COPY --from=BUILD_IMAGE /bin/main /bin/main
 
+RUN mkdir -p /bot-state
+
 ENTRYPOINT [ "/bin/main" ]
+CMD [ "/bot-state" ]

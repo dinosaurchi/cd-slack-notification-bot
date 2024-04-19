@@ -157,6 +157,8 @@ docker.run.local:
 	$(call print_title,Run local docker container) && \
 	docker run \
 		--name ${DOCKER_IMAGE_NAME} \
+		--env-file .env \
+		-v `pwd`/state:/bot-state \
 		-d \
 		${DOCKER_IMAGE_NAME}:latest-$(platform)
 

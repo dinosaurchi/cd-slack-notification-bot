@@ -17,6 +17,16 @@ import (
 )
 
 func main() {
+	var stateRootDirPath string
+	const minArgs = 2
+	if len(os.Args) < minArgs {
+		stateRootDirPath = path.Join(".", "state")
+		logrus.Warnf("State root directory is not provided. Using default: %v\n", stateRootDirPath)
+	} else {
+		stateRootDirPath = os.Args[1]
+	}
+	logrus.Infof("State root directory: %v\n", stateRootDirPath)
+
 	err := godotenv.Load(".env")
 	if err != nil {
 		panic(err)
@@ -25,8 +35,7 @@ func main() {
 	// Use repo owner and repo name to create a state directory
 	// to avoid conflicts between different repositories
 	stateDirPath := path.Join(
-		".",
-		"state",
+		stateRootDirPath,
 		config.GetConfigDefault().Github.RepoOwner,
 		config.GetConfigDefault().Github.RepoName,
 	)

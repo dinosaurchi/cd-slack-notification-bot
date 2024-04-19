@@ -100,6 +100,11 @@ func fetchNewPRs(
 			newTimestamps = append(newTimestamps, utils.ConvertTimestampStringToTime(githubPRInfo.Timestamp))
 		}
 
+		if githubPRInfo.ThreadTimestamp == "" {
+			/// Not a thread message, we can ignore
+			continue
+		}
+
 		// Initialize PR info if not exists
 		if _, ok := state.PRs[githubPRInfo.ThreadTimestamp]; !ok {
 			state.PRs[githubPRInfo.ThreadTimestamp] = &PRInfo{

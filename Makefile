@@ -76,34 +76,14 @@ install-tools:
 # Development and CI #
 ######################
 test.all:
-	@. .env && \
-	GITHUB_REPO_OWNER=${GITHUB_REPO_OWNER} \
-	GITHUB_REPO_NAME=${GITHUB_REPO_NAME} \
-	GITHUB_TOKEN=${GITHUB_TOKEN} \
-	SLACK_TOKEN=${SLACK_TOKEN} \
-	SLACK_CODEBUILD_NOTIFICATION_CHANNEL_ID=${SLACK_CODEBUILD_NOTIFICATION_CHANNEL_ID} \
-	SLACK_GITHUB_PR_NOTIFICATION_CHANNEL_ID=${SLACK_GITHUB_PR_NOTIFICATION_CHANNEL_ID} \
-	CGO_ENABLED=1 \
-	CI=false \
-	gotestsum \
-		--format pkgname \
-		--no-summary=skipped \
-		-- ./... $(flags)
+	@$(eval env_vars:=$(shell grep -v '^#' .env | xargs -0 | tr '\n' ' '))
+	@$(eval command:="$(env_vars) CGO_ENABLED=1 CI=false gotestsum --format pkgname --no-summary=skipped -- ./... $(flags)")
+	@bash -c $(command)
 
 test.pkg.%:
-	@. .env && \
-	GITHUB_REPO_OWNER=${GITHUB_REPO_OWNER} \
-	GITHUB_REPO_NAME=${GITHUB_REPO_NAME} \
-	GITHUB_TOKEN=${GITHUB_TOKEN} \
-	SLACK_TOKEN=${SLACK_TOKEN} \
-	SLACK_CODEBUILD_NOTIFICATION_CHANNEL_ID=${SLACK_CODEBUILD_NOTIFICATION_CHANNEL_ID} \
-	SLACK_GITHUB_PR_NOTIFICATION_CHANNEL_ID=${SLACK_GITHUB_PR_NOTIFICATION_CHANNEL_ID} \
-	CGO_ENABLED=1 \
-	CI=false \
-	gotestsum \
-		--format pkgname \
-		--no-summary=skipped \
-		-- ./pkg/$*/... $(flags)
+	@$(eval env_vars:=$(shell grep -v '^#' .env | xargs -0 | tr '\n' ' '))
+	@$(eval command:="$(env_vars) CGO_ENABLED=1 CI=false gotestsum --format pkgname --no-summary=skipped -- ./pkg/$*/... $(flags)")
+	@bash -c $(command)
 
 ci:
 	@go env GOCACHE

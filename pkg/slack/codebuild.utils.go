@@ -1,9 +1,9 @@
 package slack
 
 import (
-	"cd-slack-notification-bot/go/pkg/aws"
 	"cd-slack-notification-bot/go/pkg/utils"
 	"encoding/json"
+	"regexp"
 
 	"github.com/pkg/errors"
 	"github.com/slack-go/slack"
@@ -108,10 +108,22 @@ func getRunIDFromCodeBuildSectionBlock(
 		return "", errors.WithStack(err)
 	}
 
-	runID, err := aws.GetAWSCodeSuiteRunIDFromMessage(res.Text.Text)
+	runID, err := GetAWSCodeSuiteRunIDFromMessage(res.Text.Text)
 	if err != nil {
 		return "", errors.WithStack(err)
 	}
 
 	return runID, nil
+}
+
+func GetAWSCodeSuiteRunIDFromMessage(
+	message string,
+) (string, error) {
+	// [^/]+ means any character except '/' and '+' means one or more
+	re := regexp.MustCompile(`amazon\.com/.*/build/([^/]+)/phase`)
+	match := re.FindStringSubmatch(message)
+	if len(match) > 1 {
+		return match[1], nil
+	}
+	return "", nil
 }

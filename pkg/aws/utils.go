@@ -17,15 +17,3 @@ func GetAWSCodeBuildRunID(
 	}
 	return "", nil
 }
-
-func GetAWSCodeSuiteRunIDFromMessage(
-	message string,
-) (string, error) {
-	// [^/]+ means any character except '/' and '+' means one or more
-	re := regexp.MustCompile(`amazon\.com/.*/build/([^/]+)/phase`)
-	match := re.FindStringSubmatch(message)
-	if len(match) > 1 {
-		return match[1], nil
-	}
-	return "", nil
-}

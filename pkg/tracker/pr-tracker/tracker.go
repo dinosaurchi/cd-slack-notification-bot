@@ -19,11 +19,11 @@ type State struct {
 
 type PRInfo struct {
 	PRNumber        uint64       `json:"prNumber"`
-	Statuses        []statusInfo `json:"statuses"`
+	Statuses        []StatusInfo `json:"statuses"`
 	ThreadTimestamp string       `json:"threadTimestamp"`
 }
 
-type statusInfo struct {
+type StatusInfo struct {
 	State        string `json:"state"`
 	CodeBuildURL string `json:"codeBuildURL"`
 }
@@ -111,7 +111,7 @@ func fetchNewPRs(
 		if _, ok := state.PRs[githubPRInfo.ThreadTimestamp]; !ok {
 			state.PRs[githubPRInfo.ThreadTimestamp] = &PRInfo{
 				PRNumber:        githubPRInfo.PRNumber,
-				Statuses:        []statusInfo{},
+				Statuses:        []StatusInfo{},
 				ThreadTimestamp: githubPRInfo.ThreadTimestamp,
 			}
 		}
@@ -152,12 +152,12 @@ func fetchNewPRs(
 
 func getCDInfoStatuses(
 	cdInfo *github.CDInfo,
-) []statusInfo {
-	res := []statusInfo{}
+) []StatusInfo {
+	res := []StatusInfo{}
 	for _, status := range cdInfo.Statuses {
 		res = append(
 			res,
-			statusInfo{
+			StatusInfo{
 				State:        status.State,
 				CodeBuildURL: status.TargetURL,
 			},
@@ -185,11 +185,11 @@ func updateFetchedNotResolvedPRs(
 			return nil, -1, errors.WithStack(err)
 		}
 
-		newStatuses := []statusInfo{}
+		newStatuses := []StatusInfo{}
 		for _, status := range cdInfo.Statuses {
 			newStatuses = append(
 				newStatuses,
-				statusInfo{
+				StatusInfo{
 					State:        status.State,
 					CodeBuildURL: status.TargetURL,
 				},

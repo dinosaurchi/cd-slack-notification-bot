@@ -32,6 +32,14 @@ func Test_RunNotifierCustom(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, matcherState)
 
+	// Set new CD and PR thread's timestamps
+	matcherState = prepareTestThreads(t,
+		slackClient,
+		matcherState,
+		githubPRNotificationChannelID,
+		codeBuildNotificationChannelID,
+	)
+
 	// Run notifier
 	state, err = notifier.RunNotifierCustom(
 		state,
@@ -54,13 +62,25 @@ func Test_RunNotifierCustom(t *testing.T) {
 		},
 	}, state)
 
-	// Modifer matcher state
-	matcherState.ResolvedRunIDs["go-backend-cd:534534543"] = &matcher.MatchedResult{
-		CDThreadTimestamp: "1713520757.407589",
-		PRThreadTimestamp: "1713520753.202969",
-		PRNumber:          444,
+	// Add new RunID and its thread pair
+	const newRunID = "go-backend-cd:534534543"
+	matcherState.ResolvedRunIDs[newRunID] = &matcher.MatchedResult{
+		CDThreadTimestamp: "", // will be set later
+		PRThreadTimestamp: "", // will be set later
 		Statuses:          []string{"success"},
+		PRNumber:          444,
 	}
+	var prTS, cdTS string
+	matcherState, prTS, cdTS = addNewThreadPair(t,
+		slackClient,
+		matcherState,
+		newRunID,
+		githubPRNotificationChannelID,
+		codeBuildNotificationChannelID,
+	)
+	require.NotNil(t, matcherState)
+	require.NotEmpty(t, prTS)
+	require.NotEmpty(t, cdTS)
 
 	// Run notifier again
 	state, err = notifier.RunNotifierCustom(
@@ -85,4 +105,60 @@ func Test_RunNotifierCustom(t *testing.T) {
 			"go-backend-cd:534534543":                            true,
 		},
 	}, state)
+}
+
+func prepareTestThreads(
+	t *testing.T,
+	slackClient slack.Client,
+	matcherState *matcher.State,
+	githubPRNotificationChannelID string,
+	codeBuildNotificationChannelID string,
+) *matcher.State {
+	for runID := range matcherState.ResolvedRunIDs {
+		var prThreadTimestamp, cdThreadTimestamp string
+		matcherState, prThreadTimestamp, cdThreadTimestamp = addNewThreadPair(t,
+			slackClient,
+			matcherState,
+			runID,
+			githubPRNotificationChannelID,
+			codeBuildNotificationChannelID,
+		)
+
+		require.NotNil(t, matcherState)
+		require.NotEmpty(t, prThreadTimestamp)
+		require.NotEmpty(t, cdThreadTimestamp)
+	}
+
+	return matcherState
+}
+
+func addNewThreadPair(
+	t *testing.T,
+	slackClient slack.Client,
+	matcherState *matcher.State,
+	runID string,
+	githubPRNotificationChannelID string,
+	codeBuildNotificationChannelID string,
+) (*matcher.State, string, string) {
+	// Prepare test threads on GitHub PR notification channel
+	t.Logf("Preparing test threads for RunID %s", runID)
+	message := "Test PR message with RunID " + runID
+	prThreadTimestamp, err := slackClient.CreateThread(
+		githubPRNotificationChannelID,
+		message,
+	)
+	require.NoError(t, err)
+	matcherState.ResolvedRunIDs[runID].PRThreadTimestamp = prThreadTimestamp
+
+	// Prepare test threads on CodeBuild notification channel
+	t.Logf("Preparing test threads for RunID %s", runID)
+	message = "Test CD message with RunID " + runID
+	cdThreadTimestamp, err := slackClient.CreateThread(
+		codeBuildNotificationChannelID,
+		message,
+	)
+	require.NoError(t, err)
+	matcherState.ResolvedRunIDs[runID].CDThreadTimestamp = cdThreadTimestamp
+
+	return matcherState, prThreadTimestamp, cdThreadTimestamp
 }

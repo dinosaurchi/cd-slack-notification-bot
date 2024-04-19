@@ -45,3 +45,13 @@ func Test_RetrieveChannelHistory(t *testing.T) {
 		}
 	})
 }
+
+func Test_GetMessageLink(t *testing.T) {
+	testutils.SkipCI(t)
+
+	client := slack.NewClientDefault()
+	link, err := client.GetMessageLink("C020Z9BBRR6", "1713453587.429279")
+	require.NoError(t, err)
+	require.NotEmpty(t, link)
+	t.Log("Link: ", link)
+}

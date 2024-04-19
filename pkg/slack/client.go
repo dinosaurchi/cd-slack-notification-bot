@@ -74,3 +74,18 @@ func (c *Client) RetrieveChannelHistory(
 
 	return allMessages, nil
 }
+
+func (c *Client) GetMessageLink(
+	channelID string,
+	timestamp string,
+) (string, error) {
+	api := slack.New(c.token)
+	link, err := api.GetPermalink(&slack.PermalinkParameters{
+		Channel: channelID,
+		Ts:      timestamp,
+	})
+	if err != nil {
+		return "", errors.WithStack(err)
+	}
+	return link, nil
+}

@@ -9,25 +9,31 @@ import (
 	"github.com/slack-go/slack"
 )
 
-type Client struct {
+type Client interface {
+	RetrieveChannelHistory(channelID string, from time.Time, to time.Time) ([]slack.Message, error)
+	GetMessageLink(channelID string, timestamp string) (string, error)
+	ReplyThread(channelID string, threadTimestamp string, message string) (string, error)
+}
+
+type clientImplementation struct {
 	token string
 	api   *slack.Client
 }
 
-func NewClient(token string) *Client {
-	return &Client{
+func NewClient(token string) Client {
+	return &clientImplementation{
 		token: token,
 		api:   slack.New(token),
 	}
 }
 
-func NewClientDefault() *Client {
+func NewClientDefault() Client {
 	return NewClient(
 		config.GetConfigDefault().Slack.Token,
 	)
 }
 
-func (c *Client) RetrieveChannelHistory(
+func (c *clientImplementation) RetrieveChannelHistory(
 	channelID string,
 	from time.Time,
 	to time.Time,
@@ -75,7 +81,7 @@ func (c *Client) RetrieveChannelHistory(
 	return allMessages, nil
 }
 
-func (c *Client) GetMessageLink(
+func (c *clientImplementation) GetMessageLink(
 	channelID string,
 	timestamp string,
 ) (string, error) {
@@ -90,7 +96,7 @@ func (c *Client) GetMessageLink(
 	return link, nil
 }
 
-func (c *Client) ReplyThread(
+func (c *clientImplementation) ReplyThread(
 	channelID string,
 	threadTimestamp string,
 	text string,

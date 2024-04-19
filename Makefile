@@ -2,6 +2,7 @@
 SHELL := /bin/bash
 OS_NAME := $(shell uname)
 DOCKER_IMAGE_VERSION=0.0.1
+DOCKER_IMAGE_NAME=codebuild-github-bot
 
 define print_title
 	echo -e "\n>>>>> $(1) <<<<<<\n"
@@ -128,15 +129,13 @@ docker.build.local:
 		exit 1; \
 	fi && \
 	$(call print_title,Build local docker image) && \
-	source .env.docker && \
-	export DOCKER_BUILDKIT=0 && \
 	docker build \
-		--platform $(platform) \
+		--platform linux/$(platform) \
 		--pull \
 		--build-arg CMD_NAME=$(cmd_name) \
 		-f ./Dockerfile \
-		-t $(cmd_name):$${DOCKER_IMAGE_VERSION}-$(platform) \
-		-t $(cmd_name):latest-$(platform) \
+		-t ${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION}-$(platform) \
+		-t ${DOCKER_IMAGE_NAME}:latest-$(platform) \
 		. && \
 	docker image prune -f --filter label=stage=builder
 
@@ -157,9 +156,9 @@ docker.run.local:
 	fi && \
 	$(call print_title,Run local docker container) && \
 	docker run \
-		--name $(cmd_name) \
+		--name ${DOCKER_IMAGE_NAME} \
 		-d \
-		$(cmd_name):latest-$(platform)
+		${DOCKER_IMAGE_NAME}:latest-$(platform)
 
 docker.run.local.arm64: platform=arm64
 docker.run.local.arm64: docker.run.local
@@ -188,16 +187,14 @@ docker.build.multiarch: docker.login
 		exit 1; \
 	fi && \
 	$(call print_title,Build multi-architecture docker image) && \
-	source .env.docker && \
-	export DOCKER_BUILDKIT=0 && \
 	sudo docker buildx build \
 		--platform linux/arm64,linux/amd64 \
 		--builder multiarch-builder \
 		--push \
 		--build-arg CMD_NAME=$(cmd_name) \
 		-f ./Dockerfile \
-		-t $(registry_host)/$(cmd_name):$${DOCKER_IMAGE_VERSION} \
-		-t $(registry_host)/$(cmd_name):latest \
+		-t $(registry_host)/${DOCKER_IMAGE_NAME}:${DOCKER_IMAGE_VERSION} \
+		-t $(registry_host)/${DOCKER_IMAGE_NAME}:latest \
 		. && \
 	docker image prune -f --filter label=stage=builder && \
 	docker rm -f buildx_buildkit_multiarch-builder0

@@ -18,8 +18,9 @@ type State struct {
 }
 
 type PRInfo struct {
-	PRNumber uint64       `json:"prNumber"`
-	Statuses []statusInfo `json:"statuses"`
+	PRNumber        uint64       `json:"prNumber"`
+	Statuses        []statusInfo `json:"statuses"`
+	ThreadTimestamp string       `json:"threadTimestamp"`
 }
 
 type statusInfo struct {
@@ -109,8 +110,9 @@ func fetchNewPRs(
 		// Initialize PR info if not exists
 		if _, ok := state.PRs[githubPRInfo.ThreadTimestamp]; !ok {
 			state.PRs[githubPRInfo.ThreadTimestamp] = &PRInfo{
-				PRNumber: githubPRInfo.PRNumber,
-				Statuses: []statusInfo{},
+				PRNumber:        githubPRInfo.PRNumber,
+				Statuses:        []statusInfo{},
+				ThreadTimestamp: githubPRInfo.ThreadTimestamp,
 			}
 		}
 

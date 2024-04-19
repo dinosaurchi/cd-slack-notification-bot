@@ -139,9 +139,11 @@ docker.build.local:
 		. && \
 	docker image prune -f --filter label=stage=builder
 
+docker.build.local.arm64: cmd_name=main
 docker.build.local.arm64: platform=arm64
 docker.build.local.arm64: docker.build.local
 
+docker.build.local.amd64: cmd_name=main
 docker.build.local.amd64: platform=amd64
 docker.build.local.amd64: docker.build.local
 
@@ -162,9 +164,11 @@ docker.run.local:
 		-d \
 		${DOCKER_IMAGE_NAME}:latest-$(platform)
 
+docker.run.local.arm64: cmd_name=main
 docker.run.local.arm64: platform=arm64
 docker.run.local.arm64: docker.run.local
 
+docker.run.local.amd64: cmd_name=main
 docker.run.local.amd64: platform=amd64
 docker.run.local.amd64: docker.run.local
 

@@ -63,7 +63,10 @@ func (c *clientImplementation) RetrieveChannelHistory(
 			Cursor:             cursor,
 		})
 		if err != nil {
-			return nil, errors.WithStack(err)
+			return nil, errors.Wrapf(err,
+				"failed to get conversation history for channel %s",
+				channelID,
+			)
 		}
 		if res.Error != "" {
 			return nil, errors.Errorf("Slack API error: %s", res.Error)
@@ -92,7 +95,11 @@ func (c *clientImplementation) GetMessageLink(
 		Ts:      timestamp,
 	})
 	if err != nil {
-		return "", errors.WithStack(err)
+		return "", errors.Wrapf(err,
+			"failed to get permalink for timestamp %s in channel %s",
+			timestamp,
+			channelID,
+		)
 	}
 	return link, nil
 }
@@ -109,7 +116,11 @@ func (c *clientImplementation) ReplyThread(
 		slack.MsgOptionTS(threadTimestamp),
 	)
 	if err != nil {
-		return "", errors.WithStack(err)
+		return "", errors.Wrapf(err,
+			"failed to reply to thread %s in channel %s",
+			threadTimestamp,
+			channelID,
+		)
 	}
 	return outputTimestamp, nil
 }
@@ -124,7 +135,10 @@ func (c *clientImplementation) CreateThread(
 		slack.MsgOptionText(text, false),
 	)
 	if err != nil {
-		return "", errors.WithStack(err)
+		return "", errors.Wrapf(err,
+			"failed to create thread in channel %s",
+			channelID,
+		)
 	}
 	return outputTimestamp, nil
 }

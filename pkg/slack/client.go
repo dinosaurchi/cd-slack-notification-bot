@@ -89,3 +89,20 @@ func (c *Client) GetMessageLink(
 	}
 	return link, nil
 }
+
+func (c *Client) ReplyThread(
+	channelID string,
+	threadTimestamp string,
+	text string,
+) (string, error) {
+	api := slack.New(c.token)
+	_, outputTimestamp, _, err := api.SendMessage(
+		channelID,
+		slack.MsgOptionText(text, false),
+		slack.MsgOptionTS(threadTimestamp),
+	)
+	if err != nil {
+		return "", errors.WithStack(err)
+	}
+	return outputTimestamp, nil
+}

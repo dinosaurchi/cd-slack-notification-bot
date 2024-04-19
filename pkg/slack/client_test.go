@@ -55,3 +55,14 @@ func Test_GetMessageLink(t *testing.T) {
 	require.NotEmpty(t, link)
 	t.Log("Link: ", link)
 }
+
+func Test_ReplyThread(t *testing.T) {
+	testutils.SkipCI(t)
+
+	client := slack.NewClientDefault()
+	ts, err := client.ReplyThread("C020Z9BBRR6", "1713453587.429279", "Test reply")
+	require.NoError(t, err)
+	require.NotEmpty(t, ts)
+
+	t.Log("Output timestamp: ", ts)
+}

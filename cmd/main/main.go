@@ -2,6 +2,7 @@ package main
 
 import (
 	"cd-slack-notification-bot/go/pkg/config"
+	"cd-slack-notification-bot/go/pkg/matcher"
 	cdtracker "cd-slack-notification-bot/go/pkg/tracker/cd-tracker"
 	prtracker "cd-slack-notification-bot/go/pkg/tracker/pr-tracker"
 	"cd-slack-notification-bot/go/pkg/utils"
@@ -45,12 +46,17 @@ func main() {
 		panic(err)
 	}
 
+	matcherState, err := matcher.LoadInitialMatcherState(stateDirPath)
+	if err != nil {
+		panic(err)
+	}
+
 	const waitTime = time.Minute * 3
 	const waitTimeForError = time.Minute * 6
 
 	for {
 		curNow := time.Now()
-		err := runTrackers(prTrackerState, cdTrackerState, stateDirPath, curNow)
+		err := runAlls(prTrackerState, cdTrackerState, matcherState, stateDirPath, curNow)
 		if err != nil {
 			logrus.Errorf("Error: %v\n", err)
 			time.Sleep(waitTimeForError)
@@ -60,9 +66,10 @@ func main() {
 	}
 }
 
-func runTrackers(
+func runAlls(
 	prTrackerState *prtracker.State,
 	cdTrackerState *cdtracker.State,
+	matchState *matcher.State,
 	stateDirPath string,
 	curNow time.Time,
 ) error {
@@ -86,6 +93,17 @@ func runTrackers(
 	err = utils.DumpToFile(cdtracker.GetCDTrackerStatePath(stateDirPath), cdTrackerState)
 	if err != nil {
 		return errors.Errorf("dump CD Tracker file error: %v", err)
+	}
+
+	// Run matcher
+	matchState, err = matcher.RunMatcher(matchState, cdTrackerState, prTrackerState)
+	if err != nil {
+		return errors.Errorf("error running Matcher: %v", err)
+	}
+
+	err = utils.DumpToFile(matcher.GetMatcherStatePath(stateDirPath), matchState)
+	if err != nil {
+		return errors.Errorf("dump Matcher file error: %v", err)
 	}
 
 	return nil

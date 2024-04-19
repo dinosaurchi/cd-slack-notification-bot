@@ -1,0 +1,383 @@
+[
+    {
+        "type": "message",
+        "user": "U01U6A7MWNA",
+        "ts": "1713476246.235249",
+        "thread_ts": "1713476246.235249",
+        "attachments": [
+            {
+                "color": "36a64f",
+                "fallback": "[stablyio/go-backend] Pull request opened by snavarro89",
+                "callback_id": "pr-opened-interaction",
+                "id": 1,
+                "title": "\u003chttps://github.com/stablyio/go-backend/pull/615|#615 Restrict Intant ACH for suspended or rejected accounts\u003e",
+                "pretext": "Pull request opened by \u003chttps://github.com/snavarro89|snavarro89\u003e",
+                "text": "*Overview*\n\n\u003chttps://www.notion.so/stablyio/Kanban-Board-6f3ba850d6bc49a2ba570fc69219a422?p=7f03116122d042ecb502935a13c4b20d\u0026amp;pm=s|https://www.notion.so/stablyio/Kanban-Board-6f3ba850d6bc49a2ba570fc69219a422?p=7f03116122d042ecb502935a13c4b20d\u0026amp;pm=s\u003e\n\n*Dependencies and checklists*\n\n☐ Integration tests have passed locally",
+                "fields": [
+                    {
+                        "title": "Reviewers",
+                        "value": "\u003c@UHWJU3NKD\u003e",
+                        "short": true
+                    }
+                ],
+                "actions": [
+                    {
+                        "name": "comment",
+                        "text": "Comment",
+                        "type": "button",
+                        "value": "{\u0026amp;amp;quot;selectedOrg\u0026amp;amp;quot;:\u0026amp;amp;quot;stablyio\u0026amp;amp;quot;,\u0026amp;amp;quot;selectedOrgId\u0026amp;amp;quot;:54860437,\u0026amp;amp;quot;selectedRepo\u0026amp;amp;quot;:\u0026amp;amp;quot;go-backend\u0026amp;amp;quot;,\u0026amp;amp;quot;selectedRepoId\u0026amp;amp;quot;:654332402,\u0026amp;amp;quot;number\u0026amp;amp;quot;:615,\u0026amp;amp;quot;htmlUrl\u0026amp;amp;quot;:\u0026amp;amp;quot;https://github.com/stablyio/go-backend/pull/615\u0026amp;amp;quot;,\u0026amp;amp;quot;title\u0026amp;amp;quot;:\u0026amp;amp;quot;Restrict Intant ACH for suspended or rejected accounts\u0026amp;amp;quot;}"
+                    }
+                ],
+                "mrkdwn_in": [
+                    "text"
+                ],
+                "blocks": null,
+                "footer": "\u003chttps://github.com/stablyio/go-backend|stablyio/go-backend\u003e",
+                "footer_icon": "https://slack.github.com/static/img/favicon-neutral.png",
+                "ts": 1713464813
+            },
+            {
+                "color": "28a745",
+                "fallback": "All checks have passed",
+                "id": 2,
+                "text": ":white_check_mark: All checks have passed",
+                "blocks": null,
+                "footer": "1/1 successful checks"
+            }
+        ],
+        "edited": {
+            "user": "B01UK8J7SLU",
+            "ts": "1713476356.000000"
+        },
+        "bot_id": "B01UK8J7SLU",
+        "bot_profile": {
+            "app_id": "A01BP7R4KNY",
+            "icons": {
+                "image_36": "https://avatars.slack-edge.com/2020-11-25/1527503386626_319578f21381f9641cd8_36.png",
+                "image_48": "https://avatars.slack-edge.com/2020-11-25/1527503386626_319578f21381f9641cd8_48.png",
+                "image_72": "https://avatars.slack-edge.com/2020-11-25/1527503386626_319578f21381f9641cd8_72.png"
+            },
+            "id": "B01UK8J7SLU",
+            "name": "GitHub",
+            "team_id": "TDKE5QQ8P",
+            "updated": 1618466597
+        },
+        "reply_count": 1,
+        "reply_users": [
+            "U01U6A7MWNA"
+        ],
+        "latest_reply": "1713476246.449299",
+        "team": "TDKE5QQ8P",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
+    },
+    {
+        "type": "message",
+        "user": "U01U6A7MWNA",
+        "ts": "1713454012.666599",
+        "thread_ts": "1713454012.666599",
+        "attachments": [
+            {
+                "color": "6f42c1",
+                "fallback": "[stablyio/stably-ramp-frontend] Pull request opened by unijad",
+                "callback_id": "pr-opened-interaction",
+                "id": 1,
+                "title": "\u003chttps://github.com/stablyio/stably-ramp-frontend/pull/420|#420 Improvement/kyc tos post object id to backend \u0026amp; refactor e2e tests\u003e",
+                "pretext": "Pull request opened by \u003chttps://github.com/unijad|unijad\u003e",
+                "text": "*Overview*\n\n\u003chttps://www.notion.so/stablyio/KYC-fix-TOS-loading-error-5aa129ff2234404887d8fce7e0e9bb46?pvs=4|Story\u003e\n\nchanges\n\n• improves kyc workflow logic and implement bridge api callback to record agreement document id for future use and step validation on BE\n• adds critical e2e test to test agains different scenarios\n\n*Dependencies and checklists*\n\nblocked by \u003chttps://github.com/stablyio/go-backend/pull/564|PR\u003e",
+                "fields": [
+                    {
+                        "title": "Reviewers",
+                        "value": "\u003c@UDJ9RLDAP\u003e, \u003c@UHQJX7BGE\u003e, \u003c@U024SH0S9EG\u003e",
+                        "short": true
+                    },
+                    {
+                        "title": "Comments",
+                        "value": "2",
+                        "short": true
+                    }
+                ],
+                "actions": [
+                    {
+                        "name": "comment",
+                        "text": "Comment",
+                        "type": "button",
+                        "value": "{\u0026amp;amp;quot;selectedOrg\u0026amp;amp;quot;:\u0026amp;amp;quot;stablyio\u0026amp;amp;quot;,\u0026amp;amp;quot;selectedOrgId\u0026amp;amp;quot;:54860437,\u0026amp;amp;quot;selectedRepo\u0026amp;amp;quot;:\u0026amp;amp;quot;stably-ramp-frontend\u0026amp;amp;quot;,\u0026amp;amp;quot;selectedRepoId\u0026amp;amp;quot;:579964177,\u0026amp;amp;quot;number\u0026amp;amp;quot;:420,\u0026amp;amp;quot;htmlUrl\u0026amp;amp;quot;:\u0026amp;amp;quot;https://github.com/stablyio/stably-ramp-frontend/pull/420\u0026amp;amp;quot;,\u0026amp;amp;quot;title\u0026amp;amp;quot;:\u0026amp;amp;quot;Improvement/kyc tos post object id to backend \u0026amp;amp;amp; refactor e2e tests\u0026amp;amp;quot;}"
+                    }
+                ],
+                "mrkdwn_in": [
+                    "text"
+                ],
+                "blocks": null,
+                "footer": "\u003chttps://github.com/stablyio/stably-ramp-frontend|stablyio/stably-ramp-frontend\u003e",
+                "footer_icon": "https://slack.github.com/static/img/favicon-neutral.png",
+                "ts": 1710516850
+            }
+        ],
+        "edited": {
+            "user": "B01UK8J7SLU",
+            "ts": "1713454013.000000"
+        },
+        "bot_id": "B01UK8J7SLU",
+        "bot_profile": {
+            "app_id": "A01BP7R4KNY",
+            "icons": {
+                "image_36": "https://avatars.slack-edge.com/2020-11-25/1527503386626_319578f21381f9641cd8_36.png",
+                "image_48": "https://avatars.slack-edge.com/2020-11-25/1527503386626_319578f21381f9641cd8_48.png",
+                "image_72": "https://avatars.slack-edge.com/2020-11-25/1527503386626_319578f21381f9641cd8_72.png"
+            },
+            "id": "B01UK8J7SLU",
+            "name": "GitHub",
+            "team_id": "TDKE5QQ8P",
+            "updated": 1618466597
+        },
+        "reply_count": 1,
+        "reply_users": [
+            "U01U6A7MWNA"
+        ],
+        "latest_reply": "1713454012.891459",
+        "team": "TDKE5QQ8P",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
+    },
+    {
+        "type": "message",
+        "user": "U01U6A7MWNA",
+        "ts": "1713335235.568829",
+        "thread_ts": "1713335235.568829",
+        "attachments": [
+            {
+                "color": "6f42c1",
+                "fallback": "[stablyio/terraform-trinity] Pull request opened by masterhung0112",
+                "callback_id": "pr-opened-interaction",
+                "id": 1,
+                "title": "\u003chttps://github.com/stablyio/terraform-trinity/pull/6|#6 Aave - Create S3 bucket to store webapp\u003e",
+                "pretext": "Pull request opened by \u003chttps://github.com/masterhung0112|masterhung0112\u003e",
+                "actions": [
+                    {
+                        "name": "comment",
+                        "text": "Comment",
+                        "type": "button",
+                        "value": "{\u0026amp;amp;quot;selectedOrg\u0026amp;amp;quot;:\u0026amp;amp;quot;stablyio\u0026amp;amp;quot;,\u0026amp;amp;quot;selectedOrgId\u0026amp;amp;quot;:54860437,\u0026amp;amp;quot;selectedRepo\u0026amp;amp;quot;:\u0026amp;amp;quot;terraform-trinity\u0026amp;amp;quot;,\u0026amp;amp;quot;selectedRepoId\u0026amp;amp;quot;:787259089,\u0026amp;amp;quot;number\u0026amp;amp;quot;:6,\u0026amp;amp;quot;htmlUrl\u0026amp;amp;quot;:\u0026amp;amp;quot;https://github.com/stablyio/terraform-trinity/pull/6\u0026amp;amp;quot;,\u0026amp;amp;quot;title\u0026amp;amp;quot;:\u0026amp;amp;quot;Aave - Create S3 bucket to store webapp\u0026amp;amp;quot;}"
+                    }
+                ],
+                "mrkdwn_in": [
+                    "text"
+                ],
+                "blocks": null,
+                "footer": "\u003chttps://github.com/stablyio/terraform-trinity|stablyio/terraform-trinity\u003e",
+                "footer_icon": "https://slack.github.com/static/img/favicon-neutral.png",
+                "ts": 1713335233
+            }
+        ],
+        "edited": {
+            "user": "B01UK8J7SLU",
+            "ts": "1713335266.000000"
+        },
+        "bot_id": "B01UK8J7SLU",
+        "bot_profile": {
+            "app_id": "A01BP7R4KNY",
+            "icons": {
+                "image_36": "https://avatars.slack-edge.com/2020-11-25/1527503386626_319578f21381f9641cd8_36.png",
+                "image_48": "https://avatars.slack-edge.com/2020-11-25/1527503386626_319578f21381f9641cd8_48.png",
+                "image_72": "https://avatars.slack-edge.com/2020-11-25/1527503386626_319578f21381f9641cd8_72.png"
+            },
+            "id": "B01UK8J7SLU",
+            "name": "GitHub",
+            "team_id": "TDKE5QQ8P",
+            "updated": 1618466597
+        },
+        "reply_count": 1,
+        "reply_users": [
+            "U01U6A7MWNA"
+        ],
+        "latest_reply": "1713335265.794529",
+        "team": "TDKE5QQ8P",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
+    },
+    {
+        "type": "message",
+        "user": "U01U6A7MWNA",
+        "ts": "1713320791.744569",
+        "thread_ts": "1713320791.744569",
+        "attachments": [
+            {
+                "color": "6f42c1",
+                "fallback": "[stablyio/stably-ramp-frontend] Pull request opened by chauhannishith",
+                "callback_id": "pr-opened-interaction",
+                "id": 1,
+                "title": "\u003chttps://github.com/stablyio/stably-ramp-frontend/pull/432|#432 Add new asset icons for dbr, dola, and inv\u003e",
+                "pretext": "Pull request opened by \u003chttps://github.com/chauhannishith|chauhannishith\u003e",
+                "text": "*Overview*\n\n\u003chttps://stably-team.slack.com/archives/C042QQJV42J/p1713319367651519?thread_ts=1712624504.394169\u0026amp;cid=C042QQJV42J|https://stably-team.slack.com/archives/C042QQJV42J/p1713319367651519?thread_ts=1712624504.394169\u0026amp;cid=C042QQJV42J\u003e\n\n*Dependencies and checklists*\n\n(link any dependent PRs that need to be merged before this, or any checklists that need to be run after deployment)",
+                "fields": [
+                    {
+                        "title": "Reviewers",
+                        "value": "\u003c@UDJ9RLDAP\u003e",
+                        "short": true
+                    },
+                    {
+                        "title": "Labels",
+                        "value": "new feature",
+                        "short": true
+                    }
+                ],
+                "actions": [
+                    {
+                        "name": "comment",
+                        "text": "Comment",
+                        "type": "button",
+                        "value": "{\u0026amp;amp;quot;selectedOrg\u0026amp;amp;quot;:\u0026amp;amp;quot;stablyio\u0026amp;amp;quot;,\u0026amp;amp;quot;selectedOrgId\u0026amp;amp;quot;:54860437,\u0026amp;amp;quot;selectedRepo\u0026amp;amp;quot;:\u0026amp;amp;quot;stably-ramp-frontend\u0026amp;amp;quot;,\u0026amp;amp;quot;selectedRepoId\u0026amp;amp;quot;:579964177,\u0026amp;amp;quot;number\u0026amp;amp;quot;:432,\u0026amp;amp;quot;htmlUrl\u0026amp;amp;quot;:\u0026amp;amp;quot;https://github.com/stablyio/stably-ramp-frontend/pull/432\u0026amp;amp;quot;,\u0026amp;amp;quot;title\u0026amp;amp;quot;:\u0026amp;amp;quot;Add new asset icons for dbr, dola, and inv\u0026amp;amp;quot;}"
+                    }
+                ],
+                "mrkdwn_in": [
+                    "text"
+                ],
+                "blocks": null,
+                "footer": "\u003chttps://github.com/stablyio/stably-ramp-frontend|stablyio/stably-ramp-frontend\u003e",
+                "footer_icon": "https://slack.github.com/static/img/favicon-neutral.png",
+                "ts": 1713320789
+            }
+        ],
+        "edited": {
+            "user": "B01UK8J7SLU",
+            "ts": "1713325526.000000"
+        },
+        "bot_id": "B01UK8J7SLU",
+        "bot_profile": {
+            "app_id": "A01BP7R4KNY",
+            "icons": {
+                "image_36": "https://avatars.slack-edge.com/2020-11-25/1527503386626_319578f21381f9641cd8_36.png",
+                "image_48": "https://avatars.slack-edge.com/2020-11-25/1527503386626_319578f21381f9641cd8_48.png",
+                "image_72": "https://avatars.slack-edge.com/2020-11-25/1527503386626_319578f21381f9641cd8_72.png"
+            },
+            "id": "B01UK8J7SLU",
+            "name": "GitHub",
+            "team_id": "TDKE5QQ8P",
+            "updated": 1618466597
+        },
+        "reply_count": 1,
+        "reply_users": [
+            "U01U6A7MWNA"
+        ],
+        "latest_reply": "1713325526.331829",
+        "team": "TDKE5QQ8P",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
+    },
+    {
+        "type": "message",
+        "ts": "1713504461.861239",
+        "thread_ts": "1713201758.279579",
+        "attachments": [
+            {
+                "color": "6f42c1",
+                "fallback": "[stablyio/go-backend] Pull request merged by Git-on-my-level",
+                "id": 1,
+                "title": "\u003chttps://github.com/stablyio/go-backend/pull/596|#596 [Deposit + Issuance + Redemption] Fraxtal USDS\u003e",
+                "pretext": "Pull request merged by \u003chttps://github.com/Git-on-my-level|Git-on-my-level\u003e",
+                "blocks": null,
+                "footer": "\u003chttps://github.com/stablyio/go-backend|stablyio/go-backend\u003e",
+                "footer_icon": "https://slack.github.com/static/img/favicon-neutral.png",
+                "ts": 1712095359
+            }
+        ],
+        "subtype": "thread_broadcast",
+        "bot_id": "B01UK8J7SLU",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
+    },
+    {
+        "type": "message",
+        "user": "U01U6A7MWNA",
+        "ts": "1713504461.828729",
+        "attachments": [
+            {
+                "color": "24292f",
+                "fallback": "[stablyio/go-backend] 1 new commit pushed to _main_ by Git-on-my-level",
+                "id": 1,
+                "pretext": "\u003chttps://github.com/stablyio/go-backend/compare/fefb4b913097...0cd804b59e3f|1 new commit\u003e pushed to `\u003chttps://github.com/stablyio/go-backend/tree/main|main\u003e` by \u003chttps://github.com/Git-on-my-level|Git-on-my-level\u003e",
+                "text": "`\u003chttps://github.com/stablyio/go-backend/commit/0cd804b59e3fc2ff371ddc0a7b445ab582288f1f|0cd804b5\u003e` - [Deposit + Issuance + Redemption] Fraxtal USDS (#596)",
+                "mrkdwn_in": [
+                    "text"
+                ],
+                "blocks": null,
+                "footer": "\u003chttps://github.com/stablyio/go-backend|stablyio/go-backend\u003e",
+                "footer_icon": "https://slack.github.com/static/img/favicon-neutral.png"
+            }
+        ],
+        "bot_id": "B01UK8J7SLU",
+        "bot_profile": {
+            "app_id": "A01BP7R4KNY",
+            "icons": {
+                "image_36": "https://avatars.slack-edge.com/2020-11-25/1527503386626_319578f21381f9641cd8_36.png",
+                "image_48": "https://avatars.slack-edge.com/2020-11-25/1527503386626_319578f21381f9641cd8_48.png",
+                "image_72": "https://avatars.slack-edge.com/2020-11-25/1527503386626_319578f21381f9641cd8_72.png"
+            },
+            "id": "B01UK8J7SLU",
+            "name": "GitHub",
+            "team_id": "TDKE5QQ8P",
+            "updated": 1618466597
+        },
+        "team": "TDKE5QQ8P",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
+    },
+    {
+        "type": "message",
+        "ts": "1713476246.449299",
+        "thread_ts": "1713476246.235249",
+        "attachments": [
+            {
+                "color": "36a64f",
+                "fallback": "[stablyio/go-backend] Pull request ready for review by snavarro89",
+                "id": 1,
+                "title": "\u003chttps://github.com/stablyio/go-backend/pull/615|#615 Restrict Intant ACH for suspended or rejected accounts\u003e",
+                "pretext": "Pull request ready for review by \u003chttps://github.com/snavarro89|snavarro89\u003e",
+                "blocks": null,
+                "footer": "\u003chttps://github.com/stablyio/go-backend|stablyio/go-backend\u003e",
+                "footer_icon": "https://slack.github.com/static/img/favicon-neutral.png",
+                "ts": 1713464813
+            }
+        ],
+        "subtype": "thread_broadcast",
+        "bot_id": "B01UK8J7SLU",
+        "replace_original": false,
+        "delete_original": false,
+        "metadata": {
+            "event_type": "",
+            "event_payload": null
+        },
+        "blocks": null
+    }
+]

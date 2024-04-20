@@ -45,7 +45,7 @@ func main() {
 	}
 
 	const lookBackDurationPRTracker = time.Hour * 500
-	const lookBackDurationCDTracker = time.Hour * 24
+	const lookBackDurationCDTracker = time.Hour * 500
 
 	prTrackerState, err := prtracker.LoadInitialPRTrackerState(stateDirPath, lookBackDurationPRTracker)
 	if err != nil {

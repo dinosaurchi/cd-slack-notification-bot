@@ -108,7 +108,17 @@ func RunPRTracker(
 func isResolved(
 	pr *PRInfo,
 ) bool {
-	return len(pr.Statuses) > 0
+	if len(pr.Statuses) == 0 {
+		return false
+	}
+	for _, status := range pr.Statuses {
+		if status.State == "failure" {
+			// If there is at least one status that is failed, it means that the PR is already resolved
+			// with a failure status (we do not need to care about the other statuses as the PR is already failed)
+			return true
+		}
+	}
+	return false
 }
 
 func fetchNewPRs(

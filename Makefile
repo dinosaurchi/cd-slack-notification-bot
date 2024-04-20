@@ -233,3 +233,6 @@ docker.deploy-image.pi:
 			--restart unless-stopped \
 			-d \
 			${DOCKER_IMAGE_NAME}:latest-$(platform)"
+
+docker.buildandeploy.pi.arm64: docker.build.local.arm64
+docker.buildandeploy.pi.arm64: docker.deploy-image.pi

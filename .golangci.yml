@@ -50,7 +50,7 @@ run:
 # output configuration options
 output:
   # colored-line-number|line-number|json|tab|checkstyle|code-climate, default is "colored-line-number"
-  format: colored-line-number
+  formats: colored-line-number
 
   # print lines of code with issue, default is true
   # print-issued-lines: true
@@ -443,6 +443,8 @@ issues:
   # new-from-rev: REV
   # Show only new issues created in git patch with set file path.
   # new-from-patch: path/to/patch/file
+  exclude-dirs:
+    - cmd/testing # this entry is just for testing purposes
   exclude-rules:
     - path: _test.go
       linters:

@@ -6,6 +6,8 @@ build/
 .github/
 .vscode/
 
+cmd/testing
+
 *.tar.gz
 *.zip
 *.rar

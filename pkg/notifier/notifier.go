@@ -41,6 +41,43 @@ func RunNotifierCustom(
 ) (*State, error) {
 	logrus.Infof("=== Run notifier ====")
 
+	var err error
+	state, err = notifyFailedCDs(
+		state,
+		matcherState,
+		slackClient,
+		githubPRNotificationChannelID,
+		codeBuildNotificationChannelID,
+	)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to notify failed CDs")
+	}
+
+	// Separate the successful PRs from the PRs that have been notified
+	logrus.Infof("")
+
+	state, err = notifySuccessfulCDs(
+		state,
+		prTrackerState,
+		slackClient,
+		githubPRNotificationChannelID,
+	)
+	if err != nil {
+		return nil, errors.Wrapf(err, "failed to notify successful PRs")
+	}
+
+	logrus.Infof("-------------")
+
+	return state, nil
+}
+
+func notifyFailedCDs(
+	state *State,
+	matcherState *matcher.State,
+	slackClient slack.Client,
+	githubPRNotificationChannelID string,
+	codeBuildNotificationChannelID string,
+) (*State, error) {
 	logrus.Infof("Total resolved RunIDs: %v", len(matcherState.ResolvedRunIDs))
 
 	resolvedNotifiedCount := 0
@@ -70,13 +107,19 @@ func RunNotifierCustom(
 
 	logrus.Infof("Notified %v new resolved RunIDs", resolvedNotifiedCount)
 
+	return state, nil
+}
+
+func notifySuccessfulCDs(
+	state *State,
+	prTrackerState *prtracker.State,
+	slackClient slack.Client,
+	githubPRNotificationChannelID string,
+) (*State, error) {
 	successfulPRs, err := prTrackerState.GetPRsWithSuccessfulCD()
 	if err != nil {
 		return nil, errors.WithStack(err)
 	}
-
-	// Separate the successful PRs from the PRs that have been notified
-	logrus.Infof("")
 
 	logrus.Infof("Total successful PRs: %v", len(successfulPRs))
 
@@ -119,8 +162,6 @@ func RunNotifierCustom(
 	}
 
 	logrus.Infof("Notified %v new successful PRs", successfulPRsNotifiedCount)
-
-	logrus.Infof("-------------")
 
 	return state, nil
 }

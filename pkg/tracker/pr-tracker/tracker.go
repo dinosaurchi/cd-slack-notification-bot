@@ -17,10 +17,61 @@ type State struct {
 	PRs map[string]*PRInfo `json:"PRs"`
 }
 
+func (s *State) GetPRsWithSuccessfulCD() (map[string]*PRInfo, error) {
+	successPRs := map[string]*PRInfo{}
+	for prNumber, prInfo := range s.PRs {
+		if prInfo.IsSuccessfulCD() {
+			successPRs[prNumber] = prInfo
+		}
+	}
+	return successPRs, nil
+}
+
 type PRInfo struct {
 	PRNumber        uint64       `json:"prNumber"`
 	Statuses        []StatusInfo `json:"statuses"`
 	ThreadTimestamp string       `json:"threadTimestamp"`
+}
+
+func (pr *PRInfo) GetRunID() (string, error) {
+	if len(pr.Statuses) == 0 {
+		return "", errors.Errorf("No statuses found for PR %v", pr.PRNumber)
+	}
+	codeBuildURL, err := pr.GetCodeBuildURL()
+	if err != nil {
+		return "", errors.WithStack(err)
+	}
+	runID, err := slack.GetAWSCodeBuildRunID(codeBuildURL)
+	if err != nil {
+		return "", errors.WithStack(err)
+	}
+	return runID, nil
+}
+
+func (pr *PRInfo) IsSuccessfulCD() bool {
+	if len(pr.Statuses) == 0 {
+		// If there are no statuses, it means that the PR is not merged or there is not CD finished yet
+		return false
+	}
+	for _, status := range pr.Statuses {
+		// If there is at least one status that is not successful, return false
+		if status.State != "success" {
+			return false
+		}
+	}
+	return true
+}
+
+func (pr *PRInfo) GetCodeBuildURL() (string, error) {
+	if len(pr.Statuses) == 0 {
+		return "", errors.Errorf("No statuses found for PR %v", pr.PRNumber)
+	}
+	for _, status := range pr.Statuses {
+		if status.CodeBuildURL != "" {
+			return status.CodeBuildURL, nil
+		}
+	}
+	return "", errors.New("No CodeBuild URL found")
 }
 
 type StatusInfo struct {

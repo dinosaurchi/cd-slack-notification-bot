@@ -14,6 +14,14 @@ func GetCDMessage(
 		" - " + relatedThreadLink, nil
 }
 
+func GetSuccessfulCDMessage(
+	codeBuildURL string,
+) (string, error) {
+	return "" +
+		"CD succeeded" +
+		" - " + codeBuildURL, nil
+}
+
 func isCDFailed(
 	statuses []string,
 ) bool {

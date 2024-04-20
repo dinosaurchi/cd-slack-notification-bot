@@ -128,7 +128,7 @@ func runAlls(
 
 	// Run notifier
 	if config.GetConfigDefault().Slack.IsSendingSlackNotification {
-		_, err = runNotifier(notifierState, matchState, stateDirPath)
+		_, err = runNotifier(notifierState, matchState, prTrackerState, stateDirPath)
 		if err != nil {
 			return errors.Errorf("error running Notifier: %v", err)
 		}
@@ -144,9 +144,10 @@ func runAlls(
 func runNotifier(
 	notifierState *notifier.State,
 	matchState *matcher.State,
+	prTrackerState *prtracker.State,
 	stateDirPath string,
 ) (*notifier.State, error) {
-	notifierState, err := notifier.RunNotifier(notifierState, matchState)
+	notifierState, err := notifier.RunNotifier(notifierState, matchState, prTrackerState)
 	if err != nil {
 		logrus.Errorf("error running Notifier: %v", err)
 	}

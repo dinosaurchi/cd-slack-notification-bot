@@ -1,7 +1,6 @@
-package matcher_test
+package prtracker_test
 
 import (
-	"cd-slack-notification-bot/go/pkg/matcher"
 	prtracker "cd-slack-notification-bot/go/pkg/tracker/pr-tracker"
 	"cd-slack-notification-bot/go/pkg/utils"
 	"testing"
@@ -17,7 +16,7 @@ func Test_GetRunIDFromPRInfo(t *testing.T) {
 
 	runIDs := []string{}
 	for _, prInfo := range prInfos {
-		runID, err := matcher.GetRunIDFromPRInfo(prInfo)
+		runID, err := prtracker.GetRunIDFromPRInfo(prInfo)
 		require.NoError(t, err)
 		runIDs = append(runIDs, runID)
 	}

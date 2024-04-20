@@ -76,7 +76,7 @@ func toStateStrings(prInfo *prtracker.PRInfo) []string {
 func mapRunIDsToPRs(prTrackerState *prtracker.State) (map[string]*prtracker.PRInfo, error) {
 	runIDsToPRs := map[string]*prtracker.PRInfo{}
 	for _, prInfo := range prTrackerState.PRs {
-		prRunID, err := GetRunIDFromPRInfo(prInfo)
+		prRunID, err := prtracker.GetRunIDFromPRInfo(prInfo)
 		if err != nil {
 			return nil, errors.WithStack(err)
 		}

@@ -4,4 +4,7 @@ secrets/
 state/
 cmd/testing
 
+# Project temporary directory
+.tmp
+
 .env

@@ -3,6 +3,10 @@ SHELL := /bin/bash
 OS_NAME := $(shell uname)
 DOCKER_IMAGE_VERSION=0.0.1
 DOCKER_IMAGE_NAME=codebuild-github-bot
+REMOTE_HOST=pi-databot.local
+REMOTE_HOST_USER=pi
+REMOTE_HOST_WORKDIR=/home/pi/codebuild-github-bot
+REMOTE_SSH_KEY=~/.ssh/pi_databot_rsa
 
 define print_title
 	echo -e "\n>>>>> $(1) <<<<<<\n"
@@ -114,10 +118,9 @@ buildandrun.entrypoint.%: build.entrypoint.%
 ################
 # Remote utils #
 ################
-
-remote.upload: key_path=~/.ssh/pi_databot_rsa
-remote.upload: host_user=pi
-remote.upload: host_address=pi-databot.local
+remote.upload: key_path=$(REMOTE_SSH_KEY)
+remote.upload: host_user=$(REMOTE_HOST_USER)
+remote.upload: host_address=$(REMOTE_HOST)
 remote.upload:
 	@if [ "$(file_path)" = "" ]; then \
 		echo -e "Must provide file_path argument"; \
@@ -126,16 +129,38 @@ remote.upload:
 	if [ "$(dest_path)" = "" ]; then \
 		echo -e "Must provide dest_path argument"; \
 		exit 1; \
-	fi && \
-	rsync -h -P -e "ssh -i $(key_path)" -a $(file_path) $(host_user)@$(host_address):$(dest_path)
+	fi
+	@$(eval host_dest_path="$(host_user)@$(host_address):$(dest_path)")
+	@echo -e "Uploading file $(file_path) to $(host_dest_path)"
+	@rsync -h -P -e "ssh -i $(key_path)" -a $(file_path) $(host_dest_path)
+
+remote.upload.docker-image: dest_dir=.tmp
+remote.upload.docker-image: image_name=${DOCKER_IMAGE_NAME}
+remote.upload.docker-image: docker.dump-image
+remote.upload.docker-image: file_path=$(dest_dir)/$(image_name).tar
+remote.upload.docker-image: dest_path=${REMOTE_HOST_WORKDIR}/$(image_name).tar
+remote.upload.docker-image: remote.upload
 
 ################
 # Docker utils #
 ################
 docker.login:
 	@$(call print_title,Login to Docker Registry) && \
-	source .env.docker && \
 	(docker login $(registry_host) -u $(registry_user) --password-stdin < $(registry_password_file))
+
+docker.dump-image:
+	@if [ "$(dest_dir)" = "" ]; then \
+		echo -e "Must provide dest_dir argument"; \
+		exit 1; \
+	fi && \
+	if [ "$(image_name)" = "" ]; then \
+		echo -e "Must provide image_name argument"; \
+		exit 1; \
+	fi
+	@mkdir -p $(dest_dir)
+	@$(eval image_path=$(dest_dir)/$(image_name).tar)
+	@echo -e "Dumping docker image to $(image_path)"
+	@docker save $(image_name) -o $(image_path)
 
 docker.build.local:
 	@if [ "$(cmd_name)" = "" ]; then \
@@ -166,10 +191,6 @@ docker.build.local.amd64: platform=amd64
 docker.build.local.amd64: docker.build.local
 
 docker.run.local:
-	@if [ "$(cmd_name)" = "" ]; then \
-		echo -e "Must provide cmd_name argument"; \
-		exit 1; \
-	fi && \
 	if [ "$(platform)" = "" ]; then \
 		echo -e "Must provide platform argument"; \
 		exit 1; \
@@ -182,10 +203,36 @@ docker.run.local:
 		-d \
 		${DOCKER_IMAGE_NAME}:latest-$(platform)
 
-docker.run.local.arm64: cmd_name=main
 docker.run.local.arm64: platform=arm64
 docker.run.local.arm64: docker.run.local
 
-docker.run.local.amd64: cmd_name=main
 docker.run.local.amd64: platform=amd64
 docker.run.local.amd64: docker.run.local
+
+docker.push-image.pi: remote.upload.docker-image
+docker.push-image.pi:
+	@$(eval image_path=$(REMOTE_HOST_WORKDIR)/${DOCKER_IMAGE_NAME}.tar)
+	@echo -e "Loading docker image $(image_path) on $(REMOTE_HOST) host"
+	@ssh -i $(REMOTE_SSH_KEY) $(REMOTE_HOST_USER)@$(REMOTE_HOST) \
+		"docker load -i $(image_path) && rm -r $(image_path)"
+
+docker.deploy-image.pi: docker.push-image.pi
+docker.deploy-image.pi: platform=arm64
+docker.deploy-image.pi: remote_state_dir=$(REMOTE_HOST_WORKDIR)/state
+docker.deploy-image.pi: remote_env_file=$(REMOTE_HOST_WORKDIR)/.env
+docker.deploy-image.pi:
+docker.deploy-image.pi: file_path=.env
+docker.deploy-image.pi: dest_path=$(REMOTE_HOST_WORKDIR)/.env
+docker.deploy-image.pi: remote.upload
+docker.deploy-image.pi:
+	@echo -e "Deploying docker container on $(REMOTE_HOST) host"
+	@(ssh -i $(REMOTE_SSH_KEY) $(REMOTE_HOST_USER)@$(REMOTE_HOST) \
+		"docker rm -f ${DOCKER_IMAGE_NAME} || true") && \
+	ssh -i $(REMOTE_SSH_KEY) $(REMOTE_HOST_USER)@$(REMOTE_HOST) \
+		"docker run \
+			--name ${DOCKER_IMAGE_NAME} \
+			--env-file $(remote_env_file) \
+			-v $(remote_state_dir):/bot-state \
+			--restart unless-stopped \
+			-d \
+			${DOCKER_IMAGE_NAME}:latest-$(platform)"

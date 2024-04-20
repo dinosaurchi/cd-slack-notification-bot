@@ -6,6 +6,9 @@ build/
 .github/
 .vscode/
 
+# Project temporary directory
+.tmp
+
 cmd/testing
 
 *.tar.gz

@@ -221,10 +221,7 @@ docker.deploy-image.pi: platform=arm64
 docker.deploy-image.pi: remote_state_dir=$(REMOTE_HOST_WORKDIR)/state
 docker.deploy-image.pi: remote_env_file=$(REMOTE_HOST_WORKDIR)/.env
 docker.deploy-image.pi:
-docker.deploy-image.pi: file_path=.env
-docker.deploy-image.pi: dest_path=$(REMOTE_HOST_WORKDIR)/.env
-docker.deploy-image.pi: remote.upload
-docker.deploy-image.pi:
+	@make remote.upload file_path=.env dest_path=$(remote_env_file)
 	@echo -e "Deploying docker container on $(REMOTE_HOST) host"
 	@(ssh -i $(REMOTE_SSH_KEY) $(REMOTE_HOST_USER)@$(REMOTE_HOST) \
 		"docker rm -f ${DOCKER_IMAGE_NAME} || true") && \
